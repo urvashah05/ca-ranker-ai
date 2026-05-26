@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CA Ranker AI — Crack CA Final</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Sora:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <header class="nav" id="nav">
+    <div class="container nav-row">
+      <a href="#" class="logo"><span class="logo-sq"></span>CA Ranker <em>AI</em></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#features">Features</a></li>
+        <li><a href="#how">How it works</a></li>
+        <li><a href="#why">Why us</a></li>
+      </ul>
+      <div class="nav-auth">
+        <a href="#" class="nav-login">Log in</a>
+        <a href="#" class="nav-signup">Sign up free</a>
+      </div>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-mesh"></div>
+    <div class="orb o1"></div><div class="orb o2"></div><div class="orb o3"></div>
+
+    <div class="container hero-inner">
+      <div class="eyebrow up"><span class="e-dot"></span>AI-Powered · CA Final · ICAI Exam Prep</div>
+
+      <h1 class="h1 up">
+        The smarter way to<br>
+        <span class="swap" id="swap">Give Exams</span>
+      </h1>
+
+      <p class="hero-p up">
+        5 intelligent AI study modes, Pomodoro focus, ICAI-style exam simulation
+        and progress analytics — built for every CA Final aspirant.
+      </p>
+
+      <div class="hero-btns up">
+        <a href="#" class="btn-p">Get started free</a>
+        <a href="#how" class="btn-g">See how it works</a>
+      </div>
+
+      <!-- AIR TARGET SYSTEM -->
+      <div class="air-wrap up" id="airWrap">
+
+        <!-- center ring -->
+        <div class="air-center">
+          <!-- outer glow ring -->
+          <div class="air-glow-ring"></div>
+          <!-- pulse ring -->
+          <div class="air-pulse-ring"></div>
+
+          <div class="air-ring-outer">
+            <svg class="air-progress-svg" viewBox="0 0 340 340" width="340" height="340">
+              <defs>
+                <linearGradient id="airGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%"   stop-color="#C89B2C"/>
+                  <stop offset="60%"  stop-color="#D4AF37"/>
+                  <stop offset="100%" stop-color="#E8C84A"/>
+                </linearGradient>
+                <radialGradient id="airInner" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%"   stop-color="rgba(255,253,248,.95)"/>
+                  <stop offset="100%" stop-color="rgba(248,241,229,.85)"/>
+                </radialGradient>
+                <filter id="airGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="4" result="blur"/>
+                  <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+
+              <!-- inner fill -->
+              <circle cx="170" cy="170" r="148" fill="url(#airInner)"/>
+
+              <!-- base track — full 360°, no gaps -->
+              <circle cx="170" cy="170" r="155"
+                fill="none"
+                stroke="#E6D5B8"
+                stroke-width="10"
+                stroke-linecap="butt"/>
+
+              <!-- progress arc — animates on load, sits on top of base -->
+              <circle cx="170" cy="170" r="155"
+                fill="none"
+                stroke="url(#airGrad)"
+                stroke-width="9"
+                stroke-linecap="butt"
+                stroke-dasharray="974 974"
+                stroke-dashoffset="974"
+                transform="rotate(-90 170 170)"
+                class="air-ring-arc"
+                id="airArc"
+                filter="url(#airGlow)"/>
+
+              <!-- secondary inner decorative ring -->
+              <circle cx="170" cy="170" r="140"
+                fill="none"
+                stroke="rgba(212,175,55,.07)"
+                stroke-width="1"/>
+
+              <!-- tick marks -->
+              <line x1="170" y1="6"   x2="170" y2="20"  stroke="rgba(212,175,55,.35)" stroke-width="2" stroke-linecap="round"/>
+              <line x1="334" y1="170" x2="320" y2="170" stroke="rgba(212,175,55,.35)" stroke-width="2" stroke-linecap="round"/>
+              <line x1="170" y1="334" x2="170" y2="320" stroke="rgba(212,175,55,.35)" stroke-width="2" stroke-linecap="round"/>
+              <line x1="6"   y1="170" x2="20"  y2="170" stroke="rgba(212,175,55,.35)" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+
+            <!-- center text -->
+            <div class="air-core">
+              <span class="air-label-top">YOUR TARGET</span>
+              <span class="air-value">AIR</span>
+              <span class="air-sub">&lt; 100</span>
+              <span class="air-divider"></span>
+              <span class="air-caption">CA Final 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- metric cards -->
+        <div class="air-metric air-m1">
+          <div class="air-metric-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          </div>
+          <div class="air-metric-body">
+            <div class="air-metric-top">
+              <span class="air-metric-val" data-count="6.2" data-dec="1">0</span>
+              <span class="air-metric-unit">hrs</span>
+            </div>
+            <span class="air-metric-lbl">Study Today</span>
+          </div>
+        </div>
+
+        <div class="air-metric air-m2">
+          <div class="air-metric-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <div class="air-metric-body">
+            <div class="air-metric-top">
+              <span class="air-metric-val" data-count="78" data-dec="0">0</span>
+              <span class="air-metric-unit">/100</span>
+            </div>
+            <span class="air-metric-lbl">Mock Score</span>
+          </div>
+        </div>
+
+        <div class="air-metric air-m3">
+          <div class="air-metric-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div class="air-metric-body">
+            <div class="air-metric-top">
+              <span class="air-metric-val" data-count="3" data-dec="0">0</span>
+              <span class="air-metric-unit"> topics</span>
+            </div>
+            <span class="air-metric-lbl">Weak Areas</span>
+          </div>
+        </div>
+
+        <div class="air-metric air-m4">
+          <div class="air-metric-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <div class="air-metric-body">
+            <div class="air-metric-top">
+              <span class="air-metric-val" data-count="14" data-dec="0">0</span>
+              <span class="air-metric-unit"> days</span>
+            </div>
+            <span class="air-metric-lbl">Streak 🔥</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="sec" id="features">
+    <div class="container">
+      <div class="sec-head">
+        <p class="tag">Core Features</p>
+        <h2 class="h2 up">Everything you need.<br><span class="underline">Nothing</span> you don't.</h2>
+        <p class="feat-sub up">All the tools to study, track, and rank — built for CA aspirants, by CA aspirants.</p>
+      </div>
+    </div>
+
+    <div class="slider-wrap">
+      <div class="slider-track" id="sliderTrack">
+
+        <div class="scard" style="--c:#D4AF37">
+          <div class="sc-glow"></div>
+          <div class="sc-icon">🧠</div>
+          <h3>5 AI Study Modes</h3>
+          <p>Exam, Revision, Test, Doubt &amp; Mistake Analysis — each tuned to ICAI's marking style.</p>
+          <div class="sc-chips"><span>📖 Exam</span><span>⚡ Revision</span><span>🎯 Test</span><span>💡 Doubt</span><span>🔍 Mistakes</span></div>
+        </div>
+
+        <div class="scard" style="--c:#C89B2C">
+          <div class="sc-glow"></div>
+          <div class="sc-icon">⏱️</div>
+          <h3>Pomodoro Timer</h3>
+          <p>Custom study &amp; break intervals, task linking per session, and automatic daily study hour tracking.</p>
+        </div>
+
+        <div class="scard" style="--c:#A0784A">
+          <div class="sc-glow"></div>
+          <div class="sc-icon">📊</div>
+          <h3>Progress Analytics</h3>
+          <p>Subject-wise charts, task type distribution, and weekly study hour trends — all in one dashboard.</p>
+        </div>
+
+        <div class="scard" style="--c:#1A120B">
+          <div class="sc-glow"></div>
+          <div class="sc-icon">⭐</div>
+          <h3>AI Strategies</h3>
+          <p>Weekly review, spaced repetition planning, mock test cycles and AIR focus mode.</p>
+        </div>
+
+        <div class="scard" style="--c:#8B6914">
+          <div class="sc-glow"></div>
+          <div class="sc-icon">📝</div>
+          <h3>Task Manager</h3>
+          <p>Daily tasks, completion tracking, study hours log — stay on top of every session.</p>
+        </div>
+
+        <div class="scard" style="--c:#6B5B4D">
+          <div class="sc-glow"></div>
+          <div class="sc-icon">🎓</div>
+          <h3>Exam Tracker</h3>
+          <p>Track MCC &amp; SCPM mandatory exams with status updates and preparation reminders.</p>
+        </div>
+
+        <!-- duplicates for seamless loop -->
+        <div class="scard" style="--c:#D4AF37">
+          <div class="sc-glow"></div>
+          <div class="sc-icon">🧠</div>
+          <h3>5 AI Study Modes</h3>
+          <p>Exam, Revision, Test, Doubt &amp; Mistake Analysis — each tuned to ICAI's marking style.</p>
+          <div class="sc-chips"><span>📖 Exam</span><span>⚡ Revision</span><span>🎯 Test</span><span>💡 Doubt</span><span>🔍 Mistakes</span></div>
+        </div>
+
+        <div class="scard" style="--c:#C89B2C">
+          <div class="sc-glow"></div>
+          <div class="sc-icon">⏱️</div>
+          <h3>Pomodoro Timer</h3>
+          <p>Custom study &amp; break intervals, task linking per session, and automatic daily study hour tracking.</p>
+        </div>
+
+        <div class="scard" style="--c:#A0784A">
+          <div class="sc-glow"></div>
+          <div class="sc-icon">📊</div>
+          <h3>Progress Analytics</h3>
+          <p>Subject-wise charts, task type distribution, and weekly study hour trends — all in one dashboard.</p>
+        </div>
+
+        <div class="scard" style="--c:#1A120B">
+          <div class="sc-glow"></div>
+          <div class="sc-icon">⭐</div>
+          <h3>AI Strategies</h3>
+          <p>Weekly review, spaced repetition planning, mock test cycles and AIR focus mode.</p>
+        </div>
+
+        <div class="scard" style="--c:#8B6914">
+          <div class="sc-glow"></div>
+          <div class="sc-icon">📝</div>
+          <h3>Task Manager</h3>
+          <p>Daily tasks, completion tracking, study hours log — stay on top of every session.</p>
+        </div>
+
+        <div class="scard" style="--c:#6B5B4D">
+          <div class="sc-glow"></div>
+          <div class="sc-icon">🎓</div>
+          <h3>Exam Tracker</h3>
+          <p>Track MCC &amp; SCPM mandatory exams with status updates and preparation reminders.</p>
+        </div>
+
+      </div>
+      <div class="slider-fade-l"></div>
+      <div class="slider-fade-r"></div>
+    </div>
+  </section>
+
+  <!-- TRACK WHAT MATTERS -->
+  <section class="track-sec sec-alt">
+    <div class="container">
+      <div class="sec-head">
+        <p class="tag">What we track</p>
+        <h2 class="h2 up">Track what actually <span class="underline">improves</span> your rank</h2>
+        <p class="feat-sub up">Clear insights. No clutter. Only what matters.</p>
+      </div>
+
+      <div class="track-grid">
+
+        <!-- Card 1: Performance -->
+        <div class="track-card up" style="--delay:.05s">
+          <div class="tc-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+          <h3 class="tc-title">Performance</h3>
+          <p class="tc-sub">See exactly where you stand</p>
+          <div class="tc-visual">
+            <div class="tc-bar-row">
+              <span class="tc-bar-label">SFM</span>
+              <div class="tc-bar-track"><div class="tc-bar-fill" style="--tw:55%"></div></div>
+              <span class="tc-bar-pct">55%</span>
+            </div>
+            <div class="tc-bar-row">
+              <span class="tc-bar-label">Audit</span>
+              <div class="tc-bar-track"><div class="tc-bar-fill" style="--tw:82%"></div></div>
+              <span class="tc-bar-pct">82%</span>
+            </div>
+            <div class="tc-bar-row">
+              <span class="tc-bar-label">Corp Law</span>
+              <div class="tc-bar-track"><div class="tc-bar-fill" style="--tw:68%"></div></div>
+              <span class="tc-bar-pct">68%</span>
+            </div>
+          </div>
+          <ul class="tc-list">
+            <li><span class="tc-dot"></span>Mock scores</li>
+            <li><span class="tc-dot"></span>Subject coverage</li>
+            <li><span class="tc-dot"></span>Weekly trend</li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Weak Areas -->
+        <div class="track-card up" style="--delay:.12s">
+          <div class="tc-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          </div>
+          <h3 class="tc-title">Weak Areas</h3>
+          <p class="tc-sub">AI flags what needs attention</p>
+          <div class="tc-visual tc-tags-wrap">
+            <span class="tc-tag tc-tag--hot">DT · Indirect Tax</span>
+            <span class="tc-tag tc-tag--mid">SFM · Derivatives</span>
+            <span class="tc-tag tc-tag--low">Audit · SA 700</span>
+            <span class="tc-tag tc-tag--low">Corp Law · NCLT</span>
+          </div>
+          <ul class="tc-list">
+            <li><span class="tc-dot"></span>Auto detection</li>
+            <li><span class="tc-dot"></span>Priority focus</li>
+            <li><span class="tc-dot"></span>Smart suggestions</li>
+          </ul>
+        </div>
+
+        <!-- Card 3: Consistency -->
+        <div class="track-card up" style="--delay:.19s">
+          <div class="tc-icon-wrap">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+          </div>
+          <h3 class="tc-title">Consistency</h3>
+          <p class="tc-sub">Build the habit that builds rank</p>
+          <div class="tc-visual tc-streak-wrap">
+            <div class="tc-streak-num"><span class="tc-streak-val" data-count="14">0</span><span class="tc-streak-unit">day streak 🔥</span></div>
+            <div class="tc-streak-grid">
+              <span class="tc-day tc-day--done"></span><span class="tc-day tc-day--done"></span>
+              <span class="tc-day tc-day--done"></span><span class="tc-day tc-day--done"></span>
+              <span class="tc-day tc-day--done"></span><span class="tc-day tc-day--done"></span>
+              <span class="tc-day tc-day--done"></span><span class="tc-day tc-day--done"></span>
+              <span class="tc-day tc-day--done"></span><span class="tc-day tc-day--done"></span>
+              <span class="tc-day tc-day--done"></span><span class="tc-day tc-day--done"></span>
+              <span class="tc-day tc-day--done"></span><span class="tc-day tc-day--done"></span>
+              <span class="tc-day tc-day--today"></span><span class="tc-day"></span>
+              <span class="tc-day"></span><span class="tc-day"></span>
+              <span class="tc-day"></span><span class="tc-day"></span>
+              <span class="tc-day"></span>
+            </div>
+          </div>
+          <ul class="tc-list">
+            <li><span class="tc-dot"></span>Daily tracking</li>
+            <li><span class="tc-dot"></span>Study streak</li>
+            <li><span class="tc-dot"></span>Session logs</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY / PATH -->
+  <section class="journey" id="how">
+    <div class="container">
+      <div class="journey-head">
+        <p class="j-tag">Your Path</p>
+        <h2 class="j-h2">Your journey to <span class="j-accent">AIR</span></h2>
+        <p class="j-sub">Four focused stages. One clear destination.</p>
+      </div>
+    </div>
+
+    <!-- full-width scene so SVG can be wide -->
+    <div class="j-scene" id="jScene">
+
+    <!-- straight animated line -->
+      <svg class="j-wave-svg" id="jWaveSvg" viewBox="0 0 2 900" preserveAspectRatio="none" aria-hidden="true">
+        <path class="j-wave-ghost" d="M1,0 L1,900"/>
+        <path class="j-wave-draw" id="jWaveDraw" d="M1,0 L1,900"/>
+      </svg>
+      </svg>
+
+      <!-- ROWS — laid out in normal flow, SVG sits behind -->
+      <div class="j-rows">
+
+        <div class="j-row j-row--right j-row-anim" id="jRow0">
+          <div class="j-row-gap"></div>
+          <div class="j-node-col">
+            <div class="j-dot">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+            </div>
+          </div>
+          <div class="j-content-col">
+            <div class="j-card">
+              <span class="j-step-num">01</span>
+              <h3 class="j-title">Prepare</h3>
+              <p class="j-desc">Smart study planning &amp; tracking</p>
+              <span class="j-pill"><span class="j-pill-dot"></span>Foundation</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="j-row j-row--left j-row-anim" id="jRow1">
+          <div class="j-content-col">
+            <div class="j-card">
+              <span class="j-step-num">02</span>
+              <h3 class="j-title">Analyze</h3>
+              <p class="j-desc">Deep performance insights</p>
+              <span class="j-pill"><span class="j-pill-dot"></span>Insights</span>
+            </div>
+          </div>
+          <div class="j-node-col">
+            <div class="j-dot">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+          </div>
+          <div class="j-row-gap"></div>
+        </div>
+
+        <div class="j-row j-row--right j-row-anim" id="jRow2">
+          <div class="j-row-gap"></div>
+          <div class="j-node-col">
+            <div class="j-dot">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/></svg>
+            </div>
+          </div>
+          <div class="j-content-col">
+            <div class="j-card">
+              <span class="j-step-num">03</span>
+              <h3 class="j-title">Strategize</h3>
+              <p class="j-desc">Focused revision &amp; improvements</p>
+              <span class="j-pill"><span class="j-pill-dot"></span>Strategy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="j-row j-row--left j-row-anim" id="jRow3">
+          <div class="j-content-col">
+            <div class="j-card">
+              <span class="j-step-num">04</span>
+              <h3 class="j-title">Achieve</h3>
+              <p class="j-desc">Target AIR with confidence</p>
+              <span class="j-pill"><span class="j-pill-dot j-pill-dot--gold"></span>Victory</span>
+            </div>
+          </div>
+          <div class="j-node-col">
+            <div class="j-dot j-dot--gold">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/></svg>
+            </div>
+          </div>
+          <div class="j-row-gap"></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY / TABS -->
+  <section class="why" id="why">
+    <div class="why-bg">
+      <div class="why-orb why-orb1"></div>
+      <div class="why-orb why-orb2"></div>
+    </div>
+    <div class="container">
+
+      <div class="why-head">
+        <p class="why-tag">Why CA Ranker AI</p>
+        <h2 class="why-h2">Built for one outcome:<br><span class="why-accent">your rank.</span></h2>
+      </div>
+
+      <!-- Tab nav -->
+      <div class="why-tabs">
+        <button class="why-tbtn active" data-w="0">Study Smarter</button>
+        <button class="why-tbtn" data-w="1">Stay Consistent</button>
+        <button class="why-tbtn" data-w="2">Exam Ready</button>
+      </div>
+
+      <!-- Panels -->
+      <div class="why-panels">
+
+        <!-- Panel 0 -->
+        <div class="why-panel active" id="wp0">
+          <!-- left visual -->
+          <div class="why-vis">
+            <div class="why-vis-inner">
+              <div class="why-vis-label">AI Study Session</div>
+              <div class="why-status-row">
+                <span class="why-dot why-dot--cyan"></span>
+                <span>Exam mode active</span>
+              </div>
+              <div class="why-status-row">
+                <span class="why-dot why-dot--amber"></span>
+                <span>Weak areas flagged</span>
+              </div>
+              <div class="why-status-row">
+                <span class="why-dot why-dot--green"></span>
+                <span>ICAI Q&amp;A generated</span>
+              </div>
+              <div class="why-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                Examiner-calibrated
+              </div>
+            </div>
+          </div>
+          <!-- right content -->
+          <div class="why-txt">
+            <h3 class="why-panel-h">Think like an examiner</h3>
+            <p class="why-panel-p">Built to match ICAI evaluation patterns</p>
+            <ul class="why-list">
+              <li><span class="why-bullet"></span>ICAI-style answers</li>
+              <li><span class="why-bullet"></span>Smart marking</li>
+              <li><span class="why-bullet"></span>Real feedback</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Panel 1 -->
+        <div class="why-panel" id="wp1">
+          <div class="why-vis">
+            <div class="why-vis-inner">
+              <div class="why-vis-label">Today's Progress</div>
+              <div class="why-ring-wrap">
+                <svg viewBox="0 0 80 80" width="72" height="72">
+                  <defs><linearGradient id="wring" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#C89B2C"/><stop offset="100%" stop-color="#D4AF37"/></linearGradient></defs>
+                  <circle cx="40" cy="40" r="32" fill="none" stroke="rgba(255,255,255,.06)" stroke-width="6"/>
+                  <circle cx="40" cy="40" r="32" fill="none" stroke="url(#wring)" stroke-width="6" stroke-linecap="round" stroke-dasharray="201" stroke-dashoffset="55" transform="rotate(-90 40 40)" class="why-ranim"/>
+                </svg>
+                <span class="why-ring-val" id="whyPtime">25:00</span>
+              </div>
+              <div class="why-status-row mt6">
+                <span class="why-dot why-dot--green"></span>
+                <span>14-day streak 🔥</span>
+              </div>
+              <div class="why-status-row">
+                <span class="why-dot why-dot--cyan"></span>
+                <span>6.2 hrs logged today</span>
+              </div>
+            </div>
+          </div>
+          <div class="why-txt">
+            <h3 class="why-panel-h">Built for consistency</h3>
+            <p class="why-panel-p">Stay disciplined, even on low-motivation days</p>
+            <ul class="why-list">
+              <li><span class="why-bullet"></span>Study streaks</li>
+              <li><span class="why-bullet"></span>Session tracking</li>
+              <li><span class="why-bullet"></span>Daily logs</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Panel 2 -->
+        <div class="why-panel" id="wp2">
+          <div class="why-vis">
+            <div class="why-vis-inner">
+              <div class="why-vis-label">Mock Test Result</div>
+              <div class="why-score-wrap">
+                <span class="why-score-num" id="whyScore">78</span>
+                <span class="why-score-den">/ 100</span>
+              </div>
+              <div class="why-score-bar">
+                <div class="why-score-fill" style="--sw:78%"></div>
+              </div>
+              <div class="why-status-row mt6">
+                <span class="why-dot why-dot--amber"></span>
+                <span>Improvement plan ready</span>
+              </div>
+              <div class="why-status-row">
+                <span class="why-dot why-dot--cyan"></span>
+                <span>Mistake patterns found</span>
+              </div>
+            </div>
+          </div>
+          <div class="why-txt">
+            <h3 class="why-panel-h">Test before the real test</h3>
+            <p class="why-panel-p">Simulate real exams and improve with feedback</p>
+            <ul class="why-list">
+              <li><span class="why-bullet"></span>Real scoring</li>
+              <li><span class="why-bullet"></span>Mistake analysis</li>
+              <li><span class="why-bullet"></span>Targeted plans</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="cta-o1"></div><div class="cta-o2"></div>
+    <div class="container cta-inner up">
+      <p class="cta-eye">Start today. Rank tomorrow.</p>
+      <h2 class="cta-h2">Your AIR journey<br>begins now.</h2>
+      <p class="cta-sub">Join thousands of CA Final aspirants who study smarter with AI.</p>
+      <div class="cta-btns">
+        <a href="#" class="btn-p btn-lg">Create free account</a>
+        <a href="https://capable-cendol-74a898.netlify.app" target="_blank" class="btn-g">Try the app →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="logo"><span class="logo-sq"></span>CA Ranker <em>AI</em></a>
+          <p class="footer-tagline">The smarter way to crack CA Final.<br>Built for serious aspirants.</p>
+          <div class="footer-social">
+            <a href="#" class="fsoc" aria-label="Twitter">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="fsoc" aria-label="Instagram">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+            </a>
+            <a href="#" class="fsoc" aria-label="LinkedIn">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-links-grid">
+          <div class="footer-col">
+            <h5>Product</h5>
+            <a href="#features">Features</a>
+            <a href="#how">How it works</a>
+            <a href="#why">Why us</a>
+            <a href="#">Pricing</a>
+          </div>
+          <div class="footer-col">
+            <h5>Study</h5>
+            <a href="#">AI Modes</a>
+            <a href="#">Pomodoro</a>
+            <a href="#">Analytics</a>
+            <a href="#">Mock Tests</a>
+          </div>
+          <div class="footer-col">
+            <h5>Company</h5>
+            <a href="#">About</a>
+            <a href="#">Blog</a>
+            <a href="#">Contact</a>
+            <a href="#">Privacy</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 CA Ranker AI · Built for CA Final aspirants.</p>
+        <div class="footer-made-wrap">
+          <span class="footer-made">Made by Urva Shah</span>
+          <a href="https://www.linkedin.com/in/urva-shah-2b289a30b/" target="_blank" rel="noopener" class="footer-social-link" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://github.com/urvashah05" target="_blank" rel="noopener" class="footer-social-link" aria-label="GitHub">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+            GitHub
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+

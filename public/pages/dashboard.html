@@ -1,0 +1,866 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Dashboard — CA Ranker AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Sora:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="stylesheet" href="/css/dashboard.css"/>
+</head>
+<body class="db-page">
+
+  <!-- SIDEBAR -->
+  <aside class="db-sidebar" id="dbSidebar">
+    <a href="/" class="logo db-sidebar-logo"><span class="logo-sq"></span>CA Ranker <em>AI</em></a>
+    <nav class="db-nav">
+      <a href="#" class="db-nav-item active" data-section="home">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Dashboard
+      </a>
+      <a href="#" class="db-nav-item" data-section="progress">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Progress
+      </a>
+      <a href="#" class="db-nav-item" data-section="study">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+        Study Session
+      </a>
+      <a href="#" class="db-nav-item" data-section="pomodoro">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        Pomodoro
+      </a>
+      <a href="#" class="db-nav-item" data-section="mock">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Mock Tests
+      </a>
+      <a href="#" class="db-nav-item" data-section="tasks">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        Tasks
+      </a>
+      <a href="#" class="db-nav-item" data-section="settings">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+        Settings
+      </a>
+    </nav>
+    <button class="db-logout-btn" id="logoutBtn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      Log out
+    </button>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="db-main">
+    <header class="db-topbar">
+      <div class="db-topbar-left">
+        <button class="db-menu-btn" id="dbMenuBtn" aria-label="Toggle menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+        <span class="db-topbar-title" id="dbTopbarTitle">Dashboard</span>
+      </div>
+      <div class="db-topbar-right">
+        <div class="db-avatar-wrap" id="avatarBtn">
+          <div class="db-avatar"><span class="db-avatar-text">RK</span></div>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </div>
+        <div class="db-dropdown" id="avatarDropdown">
+          <a href="#" class="db-dropdown-item" id="dropdownProfile">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            Profile
+          </a>
+          <a href="#" class="db-dropdown-item" id="dropdownSettings">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M4.93 4.93a10 10 0 0 0 0 14.14"/></svg>
+            Settings
+          </a>
+          <div class="db-dropdown-divider"></div>
+          <button class="db-dropdown-item db-dropdown-logout" id="dropdownLogout">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+            Log out
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <div class="db-content">
+
+      <!-- ===== SECTION: HOME ===== -->
+      <div class="db-section active" id="section-home">
+        <div class="db-welcome-banner">
+          <div>
+            <p class="db-greeting" id="dbGreeting">Good morning</p>
+            <h1 class="db-welcome" id="dbWelcome">Welcome back! 👋</h1>
+            <p class="db-subtitle" id="dbSubtitle">Your AIR journey continues.</p>
+          </div>
+          <span class="db-goal-badge" id="dbGoalBadge">CA Final</span>
+        </div>
+        <div class="db-stats-row">
+          <div class="db-stat-card">
+            <div class="db-stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+            <div class="db-stat-body"><span class="db-stat-val" id="homeStatHours">0 <span class="db-stat-unit">hrs</span></span><span class="db-stat-lbl">Study Today</span></div>
+          </div>
+          <div class="db-stat-card">
+            <div class="db-stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+            <div class="db-stat-body"><span class="db-stat-val" id="homeStatStreak">0 <span class="db-stat-unit">days 🔥</span></span><span class="db-stat-lbl">Current Streak</span></div>
+          </div>
+          <div class="db-stat-card">
+            <div class="db-stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <div class="db-stat-body"><span class="db-stat-val" id="homeStatMock">-- <span class="db-stat-unit">/ 100</span></span><span class="db-stat-lbl">Best Mock Score</span></div>
+          </div>
+          <div class="db-stat-card">
+            <div class="db-stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></div>
+            <div class="db-stat-body"><span class="db-stat-val" id="homeStatWeak">0 <span class="db-stat-unit">topics</span></span><span class="db-stat-lbl">Weak Areas</span></div>
+          </div>
+        </div>
+        <div class="db-grid">
+          <div class="db-card db-air-card">
+            <h2 class="db-card-title">AIR Target</h2>
+            <div class="db-air-wrap" id="dbAirWrap">
+              <div class="db-air-center">
+                <div class="db-air-glow"></div>
+                <div class="db-air-pulse"></div>
+                <div class="db-air-ring-outer">
+                  <svg viewBox="0 0 260 260" width="260" height="260">
+                    <defs>
+                      <linearGradient id="dbAirGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#C89B2C"/><stop offset="100%" stop-color="#D4AF37"/>
+                      </linearGradient>
+                      <radialGradient id="dbAirInner" cx="50%" cy="50%" r="50%">
+                        <stop offset="0%" stop-color="rgba(255,253,248,.98)"/><stop offset="100%" stop-color="rgba(248,241,229,.9)"/>
+                      </radialGradient>
+                      <filter id="dbGlow" x="-20%" y="-20%" width="140%" height="140%">
+                        <feGaussianBlur stdDeviation="3" result="blur"/>
+                        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+                      </filter>
+                    </defs>
+                    <circle cx="130" cy="130" r="112" fill="url(#dbAirInner)"/>
+                    <circle cx="130" cy="130" r="118" fill="none" stroke="#E6D5B8" stroke-width="8"/>
+                    <circle cx="130" cy="130" r="118" fill="none" stroke="url(#dbAirGrad)" stroke-width="8"
+                      stroke-dasharray="741 741" stroke-dashoffset="741"
+                      transform="rotate(-90 130 130)" class="db-air-arc" id="dbAirArc" filter="url(#dbGlow)"/>
+                  </svg>
+                  <div class="db-air-core">
+                    <span class="db-air-label">YOUR TARGET</span>
+                    <span class="db-air-val">AIR</span>
+                    <span class="db-air-sub" id="dbAirSub">&lt; 100</span>
+                    <span class="db-air-div"></span>
+                    <span class="db-air-caption" id="dbAirGoal">CA Final 2025</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="db-right-col">
+            <div class="db-card">
+              <h2 class="db-card-title">Subject Coverage</h2>
+              <div class="db-subjects-grid" id="dbSubjectsGrid"></div>
+            </div>
+            <div class="db-card">
+              <h2 class="db-card-title">Weekly Study Hours</h2>
+              <div class="db-weekly-chart" id="dbWeeklyChart"></div>
+            </div>
+          </div>
+        </div>
+        <div class="db-grid db-grid--2">
+          <div class="db-card">
+            <h2 class="db-card-title">Today's Tasks</h2>
+            <div id="homeTasksList"></div>
+            <form class="task-add-form" id="homeTaskForm" style="margin-top:12px">
+              <input type="text" class="form-input" id="homeTaskInput" placeholder="Add a task..."/>
+              <button type="submit" class="btn-p" style="margin-top:8px;width:100%">+ Add Task</button>
+            </form>
+          </div>
+          <div class="db-card">
+            <h2 class="db-card-title">Quick Actions</h2>
+            <div class="db-quick-actions">
+              <button class="btn-p db-action-btn" id="qaPomodoro">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                Start Pomodoro
+              </button>
+              <button class="btn-g db-action-btn" id="qaMock">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                Take Mock Test
+              </button>
+              <button class="btn-g db-action-btn" id="qaProgress">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                Update Progress
+              </button>
+              <a href="https://capable-cendol-74a898.netlify.app" target="_blank" class="btn-g db-action-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                AI Study Session
+              </a>
+            </div>
+          </div>
+        </div>
+        <footer class="db-footer"><p>© 2025 CA Ranker AI · Made by <a href="https://www.linkedin.com/in/urva-shah-2b289a30b/" target="_blank">Urva Shah</a></p></footer>
+      </div><!-- /section-home -->
+
+      <!-- ===== SECTION: PROGRESS ===== -->
+      <div class="db-section" id="section-progress">
+        <div class="db-section-header">
+          <h2 class="db-section-title">Progress Tracker</h2>
+          <p class="db-section-sub">Track your subject-wise coverage and study hours</p>
+        </div>
+        <div class="db-stats-row">
+          <div class="db-stat-card">
+            <div class="db-stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div>
+            <div class="db-stat-body"><span class="db-stat-val" id="progAvgCoverage">0<span class="db-stat-unit">%</span></span><span class="db-stat-lbl">Avg Coverage</span></div>
+          </div>
+          <div class="db-stat-card">
+            <div class="db-stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+            <div class="db-stat-body"><span class="db-stat-val" id="progTotalHours">0<span class="db-stat-unit"> hrs</span></span><span class="db-stat-lbl">Total Hours</span></div>
+          </div>
+          <div class="db-stat-card">
+            <div class="db-stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg></div>
+            <div class="db-stat-body"><span class="db-stat-val" id="progWeakCount">0<span class="db-stat-unit"> topics</span></span><span class="db-stat-lbl">Weak Areas</span></div>
+          </div>
+          <div class="db-stat-card">
+            <div class="db-stat-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+            <div class="db-stat-body"><span class="db-stat-val" id="progStreak">0<span class="db-stat-unit"> days 🔥</span></span><span class="db-stat-lbl">Streak</span></div>
+          </div>
+        </div>
+        <div class="prog-cards-grid" id="progressCardsGrid"></div>
+        <footer class="db-footer"><p>© 2025 CA Ranker AI · Made by <a href="https://www.linkedin.com/in/urva-shah-2b289a30b/" target="_blank">Urva Shah</a></p></footer>
+      </div><!-- /section-progress -->
+
+      <!-- ===== SECTION: STUDY ===== -->
+      <div class="db-section" id="section-study">
+        <div class="db-section-header">
+          <h2 class="db-section-title">AI Study Session</h2>
+          <p class="db-section-sub">5 intelligent study modes powered by AI — tuned for ICAI exams</p>
+        </div>
+        <div class="study-modes-grid">
+          <a href="https://capable-cendol-74a898.netlify.app" target="_blank" class="study-mode-card">
+            <div class="study-mode-icon">��</div>
+            <h3 class="study-mode-title">Exam Mode</h3>
+            <p class="study-mode-desc">Practice ICAI-style questions with examiner-calibrated answers and marking</p>
+            <span class="study-mode-badge">Most Popular</span>
+          </a>
+          <a href="https://capable-cendol-74a898.netlify.app" target="_blank" class="study-mode-card">
+            <div class="study-mode-icon">⚡</div>
+            <h3 class="study-mode-title">Revision Mode</h3>
+            <p class="study-mode-desc">Quick-fire revision of key concepts, formulas and important points</p>
+          </a>
+          <a href="https://capable-cendol-74a898.netlify.app" target="_blank" class="study-mode-card">
+            <div class="study-mode-icon">🎯</div>
+            <h3 class="study-mode-title">Test Mode</h3>
+            <p class="study-mode-desc">Timed tests with instant scoring and detailed performance breakdown</p>
+          </a>
+          <a href="https://capable-cendol-74a898.netlify.app" target="_blank" class="study-mode-card">
+            <div class="study-mode-icon">💡</div>
+            <h3 class="study-mode-title">Doubt Mode</h3>
+            <p class="study-mode-desc">Ask any CA concept and get clear, structured explanations instantly</p>
+          </a>
+          <a href="https://capable-cendol-74a898.netlify.app" target="_blank" class="study-mode-card">
+            <div class="study-mode-icon">🔍</div>
+            <h3 class="study-mode-title">Mistake Analysis</h3>
+            <p class="study-mode-desc">Identify patterns in your errors and get targeted improvement plans</p>
+          </a>
+          <a href="https://capable-cendol-74a898.netlify.app" target="_blank" class="study-mode-card study-mode-card--cta">
+            <div class="study-mode-icon">🚀</div>
+            <h3 class="study-mode-title">Open AI Tutor</h3>
+            <p class="study-mode-desc">Launch the full AI-powered study environment in a new tab</p>
+            <span class="study-mode-badge study-mode-badge--gold">Launch →</span>
+          </a>
+        </div>
+        <footer class="db-footer"><p>© 2025 CA Ranker AI · Made by <a href="https://www.linkedin.com/in/urva-shah-2b289a30b/" target="_blank">Urva Shah</a></p></footer>
+      </div><!-- /section-study -->
+
+      <!-- ===== SECTION: POMODORO ===== -->
+      <div class="db-section" id="section-pomodoro">
+        <div class="db-section-header">
+          <h2 class="db-section-title">Pomodoro Timer</h2>
+          <p class="db-section-sub">Focus sessions with automatic study hour tracking</p>
+        </div>
+        <div class="pomo-layout">
+          <div class="db-card pomo-main-card">
+            <div class="pomo-mode-tabs">
+              <button class="pomo-mode-btn active" data-mode="focus">Focus</button>
+              <button class="pomo-mode-btn" data-mode="shortBreak">Short Break</button>
+              <button class="pomo-mode-btn" data-mode="longBreak">Long Break</button>
+            </div>
+            <div class="pomo-ring-wrap">
+              <svg viewBox="0 0 220 220" width="220" height="220">
+                <defs>
+                  <linearGradient id="pomoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#C89B2C"/><stop offset="100%" stop-color="#D4AF37"/>
+                  </linearGradient>
+                </defs>
+                <circle cx="110" cy="110" r="90" fill="none" stroke="rgba(44,26,18,.07)" stroke-width="10"/>
+                <circle cx="110" cy="110" r="90" fill="none" stroke="url(#pomoGrad)" stroke-width="10"
+                  stroke-linecap="round" stroke-dasharray="565" stroke-dashoffset="0"
+                  transform="rotate(-90 110 110)" id="pomoArc"/>
+              </svg>
+              <div class="pomo-ring-center">
+                <span class="pomo-mode-label" id="pomoMode">Focus Session</span>
+                <span class="pomo-time" id="pomoTime">25:00</span>
+                <div class="pomo-session-dots" id="sessionDots"></div>
+              </div>
+            </div>
+            <div class="pomo-controls">
+              <button class="btn-g pomo-ctrl-btn" id="pomoReset" title="Reset">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+              </button>
+              <button class="btn-p pomo-ctrl-btn pomo-ctrl-btn--main" id="pomoStart">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                Start
+              </button>
+              <button class="btn-p pomo-ctrl-btn pomo-ctrl-btn--main" id="pomoPause" style="display:none">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+                Pause
+              </button>
+              <button class="btn-g pomo-ctrl-btn" id="pomoSkip" title="Skip">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="5 4 15 12 5 20 5 4"/><line x1="19" y1="5" x2="19" y2="19"/></svg>
+              </button>
+            </div>
+            <div class="pomo-meta">
+              <select class="form-select pomo-select" id="pomoSubject">
+                <option value="">Select subject (optional)</option>
+              </select>
+              <input type="text" class="form-input pomo-input" id="pomoTopic" placeholder="Topic (optional)"/>
+            </div>
+          </div>
+          <div class="pomo-side">
+            <div class="db-card">
+              <h3 class="db-card-title">Duration Settings</h3>
+              <div class="pomo-setting-group">
+                <label class="pomo-setting-label">Focus Duration</label>
+                <div class="pomo-pills" id="focusPills"></div>
+              </div>
+              <div class="pomo-setting-group">
+                <label class="pomo-setting-label">Short Break</label>
+                <div class="pomo-pills" id="shortPills"></div>
+              </div>
+              <div class="pomo-setting-group">
+                <label class="pomo-setting-label">Long Break</label>
+                <div class="pomo-pills" id="longPills"></div>
+              </div>
+            </div>
+            <div class="db-card">
+              <h3 class="db-card-title">Today's Sessions</h3>
+              <div class="pomo-log" id="pomoLog">
+                <p class="pomo-log-empty">No sessions yet. Start your first focus session!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <footer class="db-footer"><p>© 2025 CA Ranker AI · Made by <a href="https://www.linkedin.com/in/urva-shah-2b289a30b/" target="_blank">Urva Shah</a></p></footer>
+      </div><!-- /section-pomodoro -->
+
+      <!-- ===== SECTION: MOCK TESTS ===== -->
+      <div class="db-section" id="section-mock">
+        <div class="db-section-header">
+          <h2 class="db-section-title">Mock Tests</h2>
+          <p class="db-section-sub">ICAI-style exam simulation with instant scoring and review</p>
+        </div>
+
+        <!-- Setup -->
+        <div id="mockSetupPanel">
+          <div class="mock-layout">
+            <div class="db-card">
+              <h3 class="db-card-title">Configure Test</h3>
+              <div class="form-group">
+                <label class="form-label">Subject</label>
+                <select class="form-select" id="mockSubject"><option value="">Select subject</option></select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Number of Questions</label>
+                <select class="form-select" id="mockQCount">
+                  <option value="5">5 questions</option>
+                  <option value="10" selected>10 questions</option>
+                  <option value="15">15 questions</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label">Difficulty</label>
+                <div class="diff-pills">
+                  <button class="diff-pill" data-diff="easy">Easy</button>
+                  <button class="diff-pill active" data-diff="medium">Medium</button>
+                  <button class="diff-pill" data-diff="hard">Hard</button>
+                </div>
+              </div>
+              <p class="field-err-msg" id="mockSetupErr" style="display:none"></p>
+              <button class="btn-p" id="startMockBtn" style="width:100%;margin-top:8px">Start Test →</button>
+            </div>
+            <div class="db-card">
+              <h3 class="db-card-title">Recent Results</h3>
+              <div id="mockHistoryList"><p class="pomo-log-empty">No tests taken yet. Start your first mock test!</p></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Test panel -->
+        <div id="mockTestPanel" style="display:none">
+          <div class="db-card mock-test-card">
+            <div class="mock-test-header">
+              <span class="mock-progress-text" id="mockProgress">Q1 / 10</span>
+              <div class="mock-progress-bar-wrap"><div class="mock-progress-bar" id="mockProgressBar" style="width:10%"></div></div>
+              <span class="mock-timer" id="mockTimer">20:00</span>
+            </div>
+            <div class="mock-question-wrap">
+              <p class="mock-question" id="mockQuestion"></p>
+              <div class="mock-options" id="mockOptions"></div>
+            </div>
+            <div class="mock-nav">
+              <button class="btn-g" id="mockPrev">← Prev</button>
+              <div class="mock-q-grid" id="mockQGrid"></div>
+              <button class="btn-p" id="mockNext">Next →</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Result panel -->
+        <div id="mockResultPanel" style="display:none">
+          <div class="db-card mock-result-card">
+            <div class="mock-result-header">
+              <div class="mock-result-score-wrap">
+                <span class="mock-result-score" id="mockScore">0 / 10</span>
+                <span class="mock-result-pct" id="mockPct">0%</span>
+                <span class="mock-result-grade" id="mockGrade">Grade: C</span>
+              </div>
+              <div class="mock-result-meta">
+                <span>Time taken: <strong id="mockTimeTaken">—</strong></span>
+              </div>
+            </div>
+            <div class="mock-result-bar-wrap">
+              <div class="mock-result-bar">
+                <div class="mock-result-fill" id="mockCorrectBar" style="width:0%"></div>
+              </div>
+              <div class="mock-result-counts">
+                <span class="mock-correct-lbl" id="mockCorrectCount">Correct: 0</span>
+                <span class="mock-wrong-lbl" id="mockWrongCount">Wrong: 0</span>
+              </div>
+            </div>
+            <div class="mock-result-actions">
+              <button class="btn-p" id="mockReviewBtn">Review Answers</button>
+              <button class="btn-g" id="mockRetryBtn">Try Again</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Review panel -->
+        <div id="mockReviewPanel" style="display:none">
+          <div class="db-card">
+            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:20px">
+              <h3 class="db-card-title" style="margin:0">Answer Review</h3>
+              <button class="btn-g" id="mockBackBtn">← Back to Results</button>
+            </div>
+            <div id="mockReviewList"></div>
+          </div>
+        </div>
+
+        <footer class="db-footer"><p>© 2025 CA Ranker AI · Made by <a href="https://www.linkedin.com/in/urva-shah-2b289a30b/" target="_blank">Urva Shah</a></p></footer>
+      </div><!-- /section-mock -->
+
+      <!-- ===== SECTION: TASKS ===== -->
+      <div class="db-section" id="section-tasks">
+        <div class="db-section-header">
+          <h2 class="db-section-title">Task Manager</h2>
+          <p class="db-section-sub">Plan your daily study sessions and track completion</p>
+        </div>
+        <div class="tasks-layout">
+          <div class="db-card tasks-main-card">
+            <form class="task-add-form" id="taskForm">
+              <div class="task-form-row">
+                <input type="text" class="form-input" id="taskInput" placeholder="Add a new task..." required/>
+                <select class="form-select task-subj-sel" id="taskSubject">
+                  <option value="">Subject</option>
+                </select>
+                <button type="submit" class="btn-p">Add</button>
+              </div>
+            </form>
+            <div class="tasks-list" id="tasksList"></div>
+          </div>
+          <div class="db-card tasks-stats-card">
+            <h3 class="db-card-title">Today's Summary</h3>
+            <div class="tasks-summary">
+              <div class="tasks-summary-item">
+                <span class="tasks-summary-val" id="tasksTotalCount">0</span>
+                <span class="tasks-summary-lbl">Total Tasks</span>
+              </div>
+              <div class="tasks-summary-item">
+                <span class="tasks-summary-val" id="tasksDoneCount">0</span>
+                <span class="tasks-summary-lbl">Completed</span>
+              </div>
+              <div class="tasks-summary-item">
+                <span class="tasks-summary-val" id="tasksPendingCount">0</span>
+                <span class="tasks-summary-lbl">Pending</span>
+              </div>
+            </div>
+            <div class="tasks-progress-wrap">
+              <div class="tasks-progress-bar">
+                <div class="tasks-progress-fill" id="tasksProgressFill" style="width:0%"></div>
+              </div>
+              <span class="tasks-progress-pct" id="tasksProgressPct">0% done</span>
+            </div>
+          </div>
+        </div>
+        <footer class="db-footer"><p>© 2025 CA Ranker AI · Made by <a href="https://www.linkedin.com/in/urva-shah-2b289a30b/" target="_blank">Urva Shah</a></p></footer>
+      </div><!-- /section-tasks -->
+
+      <!-- ===== SECTION: SETTINGS ===== -->
+      <div class="db-section" id="section-settings">
+        <div class="db-section-header">
+          <h2 class="db-section-title">Settings</h2>
+          <p class="db-section-sub">Manage your profile and preferences</p>
+        </div>
+        <div class="settings-layout">
+          <div class="db-card">
+            <h3 class="db-card-title">Profile</h3>
+            <div class="settings-profile-row">
+              <div class="settings-avatar"><span class="db-avatar-text" id="settingsInitials">RK</span></div>
+              <div class="settings-profile-info">
+                <p class="settings-name" id="settingsName">—</p>
+                <p class="settings-email" id="settingsEmail">—</p>
+                <span class="db-goal-badge" id="settingsGoal">—</span>
+              </div>
+            </div>
+          </div>
+          <div class="db-card">
+            <h3 class="db-card-title">Study Stats</h3>
+            <div class="settings-stats">
+              <div class="settings-stat-row"><span>Member since</span><strong id="settingsJoined">—</strong></div>
+              <div class="settings-stat-row"><span>Total study hours</span><strong id="settingsTotalHours">0 hrs</strong></div>
+              <div class="settings-stat-row"><span>Best mock score</span><strong id="settingsBestMock">—</strong></div>
+              <div class="settings-stat-row"><span>Current streak</span><strong id="settingsStreakVal">0 days 🔥</strong></div>
+            </div>
+          </div>
+          <div class="db-card">
+            <h3 class="db-card-title">Data Management</h3>
+            <p style="font-size:.84rem;color:var(--muted);margin-bottom:16px">All your data is stored locally in your browser.</p>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <button class="btn-g" id="resetProgressBtn">Reset Progress Data</button>
+              <button class="btn-g" style="color:#b91c1c;border-color:rgba(185,28,28,.3)" id="resetAllBtn">Reset All Data &amp; Logout</button>
+            </div>
+          </div>
+        </div>
+        <footer class="db-footer"><p>© 2025 CA Ranker AI · Made by <a href="https://www.linkedin.com/in/urva-shah-2b289a30b/" target="_blank">Urva Shah</a></p></footer>
+      </div><!-- /section-settings -->
+
+    </div><!-- /db-content -->
+  </div><!-- /db-main -->
+
+  <!-- Mobile bottom tabs -->
+  <nav class="db-mobile-tabs">
+    <a href="#" class="db-mobile-tab active" data-section="home">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="#" class="db-mobile-tab" data-section="progress">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      <span>Progress</span>
+    </a>
+    <a href="#" class="db-mobile-tab" data-section="pomodoro">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      <span>Timer</span>
+    </a>
+    <a href="#" class="db-mobile-tab" data-section="mock">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+      <span>Tests</span>
+    </a>
+    <a href="#" class="db-mobile-tab" data-section="tasks">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+      <span>Tasks</span>
+    </a>
+  </nav>
+
+  <script type="module">
+    import { getUser, getSession, logout, getTodayHours, calculateStreak, getBestMockScore,
+             getWeakAreas, getSubjectsForGoal, getCoveragePercent, getAvgCoverage,
+             getWeeklyHours, getAllProgress, resetProgress, getTasks, addTask, toggleTask,
+             deleteTask, getMockHistory } from '/js/storage.js'
+    import { initPomodoro, requestNotificationPermission } from '/js/pomodoro.js'
+    import { renderProgressCards, openProgressModal } from '/js/progress.js'
+    import { initMock, navigateMock, reviewMock, resetMock } from '/js/mock.js'
+    import { isLoggedIn } from '/js/storage.js'
+
+    // Guard
+    if (!isLoggedIn()) { window.location.replace('/pages/login.html') }
+
+    const user = getUser()
+    if (!user) { window.location.replace('/pages/login.html') }
+
+    // ── SECTION NAVIGATION ──────────────────────────────────
+    const sectionTitles = {
+      home: 'Dashboard', progress: 'Progress', study: 'Study Session',
+      pomodoro: 'Pomodoro', mock: 'Mock Tests', tasks: 'Tasks', settings: 'Settings'
+    }
+    let currentSection = 'home'
+    let pomoInitialized = false
+    let mockInitialized = false
+
+    function showSection(name) {
+      document.querySelectorAll('.db-section').forEach(s => s.classList.remove('active'))
+      document.querySelectorAll('.db-nav-item').forEach(i => i.classList.remove('active'))
+      document.querySelectorAll('.db-mobile-tab').forEach(i => i.classList.remove('active'))
+      const sec = document.getElementById('section-' + name)
+      if (sec) sec.classList.add('active')
+      document.querySelectorAll('[data-section="' + name + '"]').forEach(el => el.classList.add('active'))
+      const titleEl = document.getElementById('dbTopbarTitle')
+      if (titleEl) titleEl.textContent = sectionTitles[name] || name
+      currentSection = name
+      // Lazy init
+      if (name === 'pomodoro' && !pomoInitialized) {
+        initPomodoro(user.goal)
+        requestNotificationPermission()
+        pomoInitialized = true
+      }
+      if (name === 'mock' && !mockInitialized) {
+        initMock(user.goal)
+        renderMockHistory()
+        mockInitialized = true
+      }
+      if (name === 'progress') renderProgress()
+      if (name === 'tasks') renderTasksSection()
+      if (name === 'settings') renderSettings()
+      if (name === 'home') refreshHome()
+      // Close sidebar on mobile
+      document.getElementById('dbSidebar')?.classList.remove('open')
+    }
+
+    document.querySelectorAll('[data-section]').forEach(el => {
+      el.addEventListener('click', e => { e.preventDefault(); showSection(el.dataset.section) })
+    })
+
+    // Dropdown nav shortcuts
+    document.getElementById('dropdownSettings')?.addEventListener('click', e => { e.preventDefault(); showSection('settings') })
+    document.getElementById('dropdownProfile')?.addEventListener('click', e => { e.preventDefault(); showSection('settings') })
+
+    // Quick action buttons
+    document.getElementById('qaPomodoro')?.addEventListener('click', () => showSection('pomodoro'))
+    document.getElementById('qaMock')?.addEventListener('click', () => showSection('mock'))
+    document.getElementById('qaProgress')?.addEventListener('click', () => showSection('progress'))
+
+    // ── LOGOUT ──────────────────────────────────────────────
+    document.getElementById('logoutBtn')?.addEventListener('click', logout)
+    document.getElementById('dropdownLogout')?.addEventListener('click', logout)
+
+    // ── AVATAR DROPDOWN ─────────────────────────────────────
+    const avatarBtn = document.getElementById('avatarBtn')
+    const dropdown  = document.getElementById('avatarDropdown')
+    if (avatarBtn && dropdown) {
+      avatarBtn.addEventListener('click', e => { e.stopPropagation(); dropdown.classList.toggle('open') })
+      document.addEventListener('click', () => dropdown.classList.remove('open'))
+    }
+
+    // ── MOBILE SIDEBAR ──────────────────────────────────────
+    document.getElementById('dbMenuBtn')?.addEventListener('click', () => {
+      document.getElementById('dbSidebar')?.classList.toggle('open')
+    })
+
+    // ── HOME SECTION ────────────────────────────────────────
+    function refreshHome() {
+      const firstName = user.name.split(' ')[0]
+      const hour = new Date().getHours()
+      const greeting = hour < 12 ? 'Good Morning' : hour < 17 ? 'Good Afternoon' : 'Good Evening'
+      setText('dbGreeting', greeting)
+      setText('dbWelcome', 'Welcome back, ' + firstName + ' 👋')
+      setText('dbGoalBadge', user.goal || 'CA Final')
+      const initials = user.name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2)
+      document.querySelectorAll('.db-avatar-text').forEach(el => el.textContent = initials)
+
+      const goal = user.goal || 'CA Final'
+      if (goal === 'CA Final') { setText('dbAirSub', '< 100'); setText('dbAirGoal', 'CA Final 2025') }
+      else if (goal === 'CA Inter') { setText('dbAirSub', '< 50'); setText('dbAirGoal', 'CA Inter') }
+      else { setText('dbAirSub', 'Keep Going'); setText('dbAirGoal', goal) }
+
+      const todayHrs = getTodayHours()
+      const streak   = calculateStreak()
+      const best     = getBestMockScore()
+      const weak     = getWeakAreas(goal)
+
+      setText('homeStatHours', todayHrs + ' ')
+      document.getElementById('homeStatHours').innerHTML = todayHrs + ' <span class="db-stat-unit">hrs</span>'
+      document.getElementById('homeStatStreak').innerHTML = streak + ' <span class="db-stat-unit">days 🔥</span>'
+      document.getElementById('homeStatMock').innerHTML = best ? best.score + ' <span class="db-stat-unit">/ ' + best.total + '</span>' : '-- <span class="db-stat-unit">/ 100</span>'
+      document.getElementById('homeStatWeak').innerHTML = weak.length + ' <span class="db-stat-unit">topics</span>'
+
+      buildSubjectBars(goal)
+      buildWeeklyChart()
+      renderHomeTasks()
+
+      setTimeout(() => {
+        const wrap = document.getElementById('dbAirWrap')
+        if (wrap) wrap.classList.add('db-animated')
+        document.querySelectorAll('.db-prog-fill').forEach(el => { el.style.width = el.dataset.pct + '%' })
+      }, 400)
+    }
+
+    function buildSubjectBars(goal) {
+      const subjects = getSubjectsForGoal(goal)
+      const grid = document.getElementById('dbSubjectsGrid')
+      if (!grid) return
+      grid.innerHTML = subjects.map(s => {
+        const pct = getCoveragePercent(s.id, s.total)
+        return '<div class="db-prog-row"><span class="db-prog-name">' + s.name.split(' ')[0] + '</span><div class="db-prog-track"><div class="db-prog-fill" data-pct="' + pct + '" style="width:0%"></div></div><span class="db-prog-pct">' + pct + '%</span></div>'
+      }).join('')
+    }
+
+    function buildWeeklyChart() {
+      const hours = getWeeklyHours()
+      const days  = ['Mon','Tue','Wed','Thu','Fri','Sat','Sun']
+      const todayIdx = (new Date().getDay() + 6) % 7
+      const max = Math.max(...hours, 1)
+      const chart = document.getElementById('dbWeeklyChart')
+      if (!chart) return
+      chart.innerHTML = hours.map((h, i) => {
+        const pct = Math.round((h / max) * 100)
+        const isToday = i === todayIdx
+        const isFuture = i > todayIdx
+        return '<div class="chart-col"><span class="chart-val">' + (h > 0 ? h + 'h' : '') + '</span><div class="chart-bar-wrap"><div class="chart-bar ' + (isToday ? 'today' : isFuture ? 'future' : 'past') + '" style="height:' + (isFuture ? 4 : Math.max(pct, h > 0 ? 8 : 4)) + '%"></div></div><span class="chart-label ' + (isToday ? 'today' : '') + '">' + days[i] + '</span></div>'
+      }).join('')
+    }
+
+    // ── HOME TASKS ───────────────────────────────────────────
+    function renderHomeTasks() {
+      const el = document.getElementById('homeTasksList')
+      if (!el) return
+      const tasks = getTasks().slice(0, 5)
+      if (!tasks.length) {
+        el.innerHTML = '<div class="db-tasks-empty"><div class="db-tasks-empty-icon">📋</div><p class="db-tasks-empty-text">No tasks yet</p></div>'
+        return
+      }
+      el.innerHTML = tasks.map(t => '<div class="task-row ' + (t.done ? 'done' : '') + '" data-id="' + t.id + '"><button class="task-check" data-id="' + t.id + '">' + (t.done ? '✓' : '') + '</button><span class="task-text">' + t.text + '</span><button class="task-del" data-id="' + t.id + '">×</button></div>').join('')
+      el.querySelectorAll('.task-check').forEach(btn => btn.addEventListener('click', () => { toggleTask(+btn.dataset.id); renderHomeTasks() }))
+      el.querySelectorAll('.task-del').forEach(btn => btn.addEventListener('click', () => { deleteTask(+btn.dataset.id); renderHomeTasks() }))
+    }
+
+    document.getElementById('homeTaskForm')?.addEventListener('submit', e => {
+      e.preventDefault()
+      const inp = document.getElementById('homeTaskInput')
+      if (inp.value.trim()) { addTask({ text: inp.value.trim() }); inp.value = ''; renderHomeTasks() }
+    })
+
+    // ── PROGRESS SECTION ────────────────────────────────────
+    function renderProgress() {
+      const goal = user.goal || 'CA Final'
+      const avg  = getAvgCoverage(goal)
+      const weak = getWeakAreas(goal)
+      const streak = calculateStreak()
+      const allProg = getAllProgress()
+      const totalHrs = Object.values(allProg).reduce((s, p) => s + (p.hours || 0), 0).toFixed(1)
+      setText('progAvgCoverage', avg)
+      setText('progTotalHours', totalHrs)
+      setText('progWeakCount', weak.length)
+      setText('progStreak', streak)
+      renderProgressCards('progressCardsGrid', goal)
+    }
+
+    document.addEventListener('progressUpdated', () => {
+      if (currentSection === 'progress') renderProgress()
+      if (currentSection === 'home') refreshHome()
+    })
+
+    // ── TASKS SECTION ────────────────────────────────────────
+    function renderTasksSection() {
+      const goal = user.goal || 'CA Final'
+      const subjects = getSubjectsForGoal(goal)
+      const sel = document.getElementById('taskSubject')
+      if (sel && sel.options.length <= 1) {
+        subjects.forEach(s => { const o = document.createElement('option'); o.value = s.id; o.textContent = s.name; sel.appendChild(o) })
+      }
+      renderTasksList()
+    }
+
+    function renderTasksList() {
+      const el = document.getElementById('tasksList')
+      if (!el) return
+      const tasks = getTasks()
+      const done = tasks.filter(t => t.done).length
+      setText('tasksTotalCount', tasks.length)
+      setText('tasksDoneCount', done)
+      setText('tasksPendingCount', tasks.length - done)
+      const pct = tasks.length ? Math.round((done / tasks.length) * 100) : 0
+      const fill = document.getElementById('tasksProgressFill')
+      if (fill) fill.style.width = pct + '%'
+      setText('tasksProgressPct', pct + '% done')
+
+      if (!tasks.length) {
+        el.innerHTML = '<div class="db-tasks-empty"><div class="db-tasks-empty-icon">📋</div><p class="db-tasks-empty-text">No tasks yet</p><p class="db-tasks-empty-sub">Add a task above to get started</p></div>'
+        return
+      }
+      el.innerHTML = tasks.map(t => '<div class="task-row ' + (t.done ? 'done' : '') + '" data-id="' + t.id + '"><button class="task-check" data-id="' + t.id + '">' + (t.done ? '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>' : '') + '</button><span class="task-text">' + t.text + (t.subject ? ' <span class="task-subj">' + t.subject + '</span>' : '') + '</span><button class="task-del" data-id="' + t.id + '"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div>').join('')
+      el.querySelectorAll('.task-check').forEach(btn => btn.addEventListener('click', () => { toggleTask(+btn.dataset.id); renderTasksList(); renderHomeTasks() }))
+      el.querySelectorAll('.task-del').forEach(btn => btn.addEventListener('click', () => { deleteTask(+btn.dataset.id); renderTasksList(); renderHomeTasks() }))
+    }
+
+    document.getElementById('taskForm')?.addEventListener('submit', e => {
+      e.preventDefault()
+      const inp = document.getElementById('taskInput')
+      const subj = document.getElementById('taskSubject')?.value || ''
+      if (inp.value.trim()) { addTask({ text: inp.value.trim(), subject: subj }); inp.value = ''; renderTasksList(); renderHomeTasks() }
+    })
+
+    document.addEventListener('studySessionLogged', () => {
+      if (currentSection === 'home') refreshHome()
+    })
+
+    // ── MOCK HISTORY ─────────────────────────────────────────
+    function renderMockHistory() {
+      const el = document.getElementById('mockHistoryList')
+      if (!el) return
+      const hist = getMockHistory().slice(0, 5)
+      if (!hist.length) { el.innerHTML = '<p class="pomo-log-empty">No tests taken yet. Start your first mock test!</p>'; return }
+      el.innerHTML = hist.map(r => {
+        const d = new Date(r.date).toLocaleDateString()
+        const grade = r.percentage >= 80 ? 'A' : r.percentage >= 60 ? 'B' : r.percentage >= 40 ? 'C' : 'D'
+        const cls = r.percentage >= 60 ? 'mock-hist-pass' : 'mock-hist-fail'
+        return '<div class="mock-hist-row ' + cls + '"><div><strong>' + r.subject + '</strong><span class="mock-hist-date"> · ' + d + '</span></div><div class="mock-hist-score">' + r.score + '/' + r.total + ' <span class="mock-hist-grade">Grade ' + grade + '</span></div></div>'
+      }).join('')
+    }
+
+    document.addEventListener('mockCompleted', () => { renderMockHistory(); refreshHome() })
+
+    // Mock nav buttons
+    document.getElementById('mockNext')?.addEventListener('click', () => navigateMock(1))
+    document.getElementById('mockPrev')?.addEventListener('click', () => navigateMock(-1))
+    document.getElementById('mockReviewBtn')?.addEventListener('click', reviewMock)
+    document.getElementById('mockRetryBtn')?.addEventListener('click', () => { resetMock(); renderMockHistory() })
+    document.getElementById('mockBackBtn')?.addEventListener('click', () => {
+      document.getElementById('mockReviewPanel').style.display = 'none'
+      document.getElementById('mockResultPanel').style.display = 'block'
+    })
+
+    // Diff pills
+    document.querySelectorAll('.diff-pill').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.diff-pill').forEach(b => b.classList.remove('active'))
+        btn.classList.add('active')
+      })
+    })
+
+    // ── SETTINGS ─────────────────────────────────────────────
+    function renderSettings() {
+      const initials = user.name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2)
+      setText('settingsInitials', initials)
+      setText('settingsName', user.name)
+      setText('settingsEmail', user.email)
+      setText('settingsGoal', user.goal || 'CA Final')
+      const joined = new Date(user.joinedAt).toLocaleDateString('en-IN', { year:'numeric', month:'long', day:'numeric' })
+      setText('settingsJoined', joined)
+      const allProg = getAllProgress()
+      const totalHrs = Object.values(allProg).reduce((s, p) => s + (p.hours || 0), 0).toFixed(1)
+      setText('settingsTotalHours', totalHrs + ' hrs')
+      const best = getBestMockScore()
+      setText('settingsBestMock', best ? best.score + '/' + best.total + ' (' + best.percentage + '%)' : '—')
+      setText('settingsStreakVal', calculateStreak() + ' days 🔥')
+    }
+
+    document.getElementById('resetProgressBtn')?.addEventListener('click', () => {
+      if (confirm('Reset all progress data? This cannot be undone.')) { resetProgress(); renderSettings(); alert('Progress data reset.') }
+    })
+    document.getElementById('resetAllBtn')?.addEventListener('click', () => {
+      if (confirm('This will delete ALL your data and log you out. Are you sure?')) {
+        resetProgress(); localStorage.clear(); window.location.href = '/pages/login.html'
+      }
+    })
+
+    // ── HELPERS ──────────────────────────────────────────────
+    function setText(id, val) { const el = document.getElementById(id); if (el) el.textContent = val }
+
+    // ── INIT ─────────────────────────────────────────────────
+    refreshHome()
+  </script>
+</body>
+</html>

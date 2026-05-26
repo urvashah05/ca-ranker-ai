@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Log In — CA Ranker AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Sora:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="stylesheet" href="/css/auth.css"/>
+</head>
+<body class="auth-page">
+
+  <div class="auth-orb auth-orb1"></div>
+  <div class="auth-orb auth-orb2"></div>
+
+  <div class="auth-center-wrap">
+
+    <!-- Logo -->
+    <a href="/" class="logo auth-top-logo">
+      <span class="logo-sq"></span>CA Ranker <em>AI</em>
+    </a>
+
+    <!-- Card -->
+    <div class="auth-card" id="loginCard">
+      <div class="auth-header">
+        <h1 class="auth-title">Welcome back</h1>
+        <p class="auth-subtitle">Log in to continue your journey to AIR.</p>
+      </div>
+
+      <div class="auth-banner" id="loginBanner"></div>
+
+      <form class="auth-form" id="loginForm" novalidate>
+
+        <div class="form-group">
+          <label class="form-label" for="loginEmail">Email Address</label>
+          <input class="form-input" type="email" id="loginEmail" placeholder="you@example.com" autocomplete="email"/>
+          <span class="field-err-msg" id="loginEmailErr"></span>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="loginPassword">Password</label>
+          <div class="input-icon-wrap">
+            <input class="form-input" type="password" id="loginPassword" placeholder="Your password" autocomplete="current-password"/>
+            <button type="button" class="pw-toggle-btn" id="loginPwToggle" aria-label="Show password">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+          <span class="field-err-msg" id="loginPassErr"></span>
+        </div>
+
+        <div class="form-row-split">
+          <label class="form-checkbox-label">
+            <input type="checkbox" class="form-checkbox" id="rememberMe"/>
+            <span class="form-checkbox-custom"></span>
+            Remember me
+          </label>
+        <a href="#" class="auth-forgot" id="forgotLink">Forgot password?</a>
+        </div>
+
+        <button type="submit" id="loginBtn" class="btn-p auth-submit">Log In →</button>
+
+        <p class="auth-footer-text">
+          Don't have an account? <a href="/pages/signup.html">Sign up free</a>
+        </p>
+
+      </form>
+    </div>
+
+  </div>
+
+  <script type="module">
+    import { handleLogin, initPasswordToggle } from '/js/auth.js'
+    document.getElementById('loginForm').addEventListener('submit', handleLogin)
+    initPasswordToggle('loginPassword', 'loginPwToggle')
+    document.getElementById('forgotLink').addEventListener('click', e => {
+      e.preventDefault()
+      const b = document.getElementById('loginBanner')
+      b.textContent = 'Password reset coming soon. Please contact support.'
+      b.className = 'auth-banner auth-banner--error visible'
+    })
+  </script>
+</body>
+</html>
