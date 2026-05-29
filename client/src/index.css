@@ -1,0 +1,7 @@
+@import "./styles/design-system.css";
+
+/* App global enhancements */
+body {
+  margin: 0;
+  padding: 0;
+}

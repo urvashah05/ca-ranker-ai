@@ -32,6 +32,10 @@ export function handleSignup(e) {
     return
   }
 
+  // Clear all previous user's data before saving new account
+  const keysToRemove = ['caranker_progress', 'caranker_studylog', 'caranker_mockhistory', 'caranker_tasks', 'caranker_pomosettings']
+  keysToRemove.forEach(k => localStorage.removeItem(k))
+
   saveUser({ name, email, password: pass, age: +age, goal, joinedAt: new Date().toISOString() })
   setSession()
 

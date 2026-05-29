@@ -1,0 +1,187 @@
+/* CA Ranker AI — Premium Luxury Design System */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Sora:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Strict Color System */
+  --bg-cream: #F8F1E5;
+  --soft-white: #FFFDF8;
+  --espresso-brown: #1A120B;
+  --dark-coffee: #2C1A12;
+  --accent-gold: #D4AF37;
+  --deep-gold: #C89B2C;
+  --muted-brown: #6B5B4D;
+  --border-light: rgba(26, 18, 11, 0.08);
+  --border-gold: rgba(212, 175, 55, 0.25);
+  
+  /* Fonts */
+  --font-sora: 'Sora', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-serif: 'Noto Serif', serif;
+
+  /* Transitions */
+  --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: all 0.2s ease;
+}
+
+/* Reset & Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-cream);
+  color: var(--espresso-brown);
+  font-family: var(--font-inter);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sora);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+p {
+  font-family: var(--font-inter);
+  line-height: 1.6;
+}
+
+/* Glassmorphism Premium Utility Classes */
+.glass-card {
+  background: rgba(255, 253, 248, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-light);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px 0 rgba(26, 18, 11, 0.04);
+  transition: var(--transition-smooth);
+}
+
+.glass-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-gold);
+  box-shadow: 0 12px 40px 0 rgba(212, 175, 55, 0.08);
+}
+
+.glass-card-gold {
+  background: rgba(255, 253, 248, 0.75);
+  backdrop-filter: blur(20px);
+  border: 1px solid var(--border-gold);
+  border-radius: 20px;
+  box-shadow: 0 10px 40px 0 rgba(212, 175, 55, 0.06);
+}
+
+/* Input Fields (Luxury Stripe/Apple Style) */
+.luxury-input-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.luxury-label {
+  display: block;
+  font-family: var(--font-sora);
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: var(--muted-brown);
+  transition: var(--transition-fast);
+}
+
+.luxury-input {
+  width: 100%;
+  padding: 12px 16px;
+  background: rgba(255, 253, 248, 0.9);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  font-family: var(--font-inter);
+  font-size: 0.95rem;
+  color: var(--espresso-brown);
+  transition: var(--transition-smooth);
+  outline: none;
+}
+
+.luxury-input:focus {
+  border-color: var(--accent-gold);
+  background: var(--soft-white);
+  box-shadow: 0 0 0 4px rgba(212, 175, 55, 0.1);
+}
+
+/* Luxury Premium Buttons */
+.btn-primary-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  background: linear-gradient(135deg, var(--accent-gold) 0%, var(--deep-gold) 100%);
+  color: var(--soft-white);
+  font-family: var(--font-sora);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(212, 175, 55, 0.2);
+  transition: var(--transition-smooth);
+  text-decoration: none;
+}
+
+.btn-primary-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(212, 175, 55, 0.35);
+  background: linear-gradient(135deg, var(--deep-gold) 0%, var(--accent-gold) 100%);
+}
+
+.btn-primary-gold:active {
+  transform: translateY(0);
+}
+
+.btn-secondary-espresso {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  background: var(--espresso-brown);
+  color: var(--soft-white);
+  font-family: var(--font-sora);
+  font-weight: 500;
+  font-size: 0.95rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  text-decoration: none;
+}
+
+.btn-secondary-espresso:hover {
+  transform: translateY(-2px);
+  background: var(--dark-coffee);
+  box-shadow: 0 6px 24px rgba(26, 18, 11, 0.15);
+}
+
+/* Gimmicks & Floating Background Elements */
+.glow-orb {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0) 70%);
+  filter: blur(40px);
+  z-index: -1;
+  pointer-events: none;
+  animation: floatOrb 12s infinite alternate ease-in-out;
+}
+
+@keyframes floatOrb {
+  0% { transform: translate(0, 0) scale(1); }
+  100% { transform: translate(40px, 60px) scale(1.1); }
+}
+
+/* Typography styles */
+.gradient-text-gold {
+  background: linear-gradient(135deg, var(--espresso-brown) 30%, var(--deep-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

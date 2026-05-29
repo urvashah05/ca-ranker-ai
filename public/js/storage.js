@@ -16,32 +16,35 @@ const KEYS = {
 // ─── SUBJECTS ────────────────────────────────────────────────
 export const SUBJECT_DATA = {
   'CA Final': [
-    { id: 'FR',    name: 'Financial Reporting',                    total: 55 },
-    { id: 'AFM',   name: 'Adv. Financial Management',              total: 48 },
-    { id: 'AAPE',  name: 'Adv. Auditing & Professional Ethics',    total: 42 },
-    { id: 'CEL',   name: 'Corporate & Economic Laws',              total: 50 },
-    { id: 'SCMPE', name: 'Strategic Cost Mgmt & Perf. Evaluation', total: 45 },
-    { id: 'DT',    name: 'Direct Tax Laws & Intl. Taxation',       total: 60 },
-    { id: 'IDT',   name: 'Indirect Tax Laws',                      total: 52 },
+    // Group I
+    { id: 'FR',   name: 'Financial Reporting (FR)',                          group: 'Group I',  paper: 'Paper 1', total: 55 },
+    { id: 'AFM',  name: 'Advanced Financial Management (AFM)',               group: 'Group I',  paper: 'Paper 2', total: 50 },
+    { id: 'AAAE', name: 'Adv. Auditing, Assurance & Professional Ethics',    group: 'Group I',  paper: 'Paper 3', total: 45 },
+    // Group II
+    { id: 'DT',   name: 'Direct Tax Laws & International Taxation',          group: 'Group II', paper: 'Paper 4', total: 60 },
+    { id: 'IDT',  name: 'Indirect Tax Laws (GST, Customs & FTP)',            group: 'Group II', paper: 'Paper 5', total: 55 },
+    { id: 'IBS',  name: 'Integrated Business Solutions (Case Study)',        group: 'Group II', paper: 'Paper 6', total: 40 },
   ],
   'CA Inter': [
-    { id: 'AdvAcc',  name: 'Advanced Accounting',                  total: 45 },
-    { id: 'CorpLaw', name: 'Corporate & Other Laws',               total: 38 },
-    { id: 'Tax',     name: 'Taxation — IT & GST',                  total: 55 },
-    { id: 'CMA',     name: 'Cost & Management Accounting',         total: 40 },
-    { id: 'Audit',   name: 'Auditing & Ethics',                    total: 35 },
-    { id: 'FMSM',    name: 'Financial Management & Strategic Mgmt',total: 42 },
+    // Group I
+    { id: 'AdvAcc',  name: 'Advanced Accounting',                            group: 'Group I',  paper: 'Paper 1', total: 45 },
+    { id: 'CorpLaw', name: 'Corporate & Other Laws',                         group: 'Group I',  paper: 'Paper 2', total: 38 },
+    { id: 'Tax',     name: 'Taxation (Income Tax & GST)',                    group: 'Group I',  paper: 'Paper 3', total: 55 },
+    // Group II
+    { id: 'CMA',     name: 'Cost & Management Accounting',                   group: 'Group II', paper: 'Paper 4', total: 40 },
+    { id: 'Audit',   name: 'Auditing & Ethics',                              group: 'Group II', paper: 'Paper 5', total: 35 },
+    { id: 'FMSM',    name: 'Financial Management & Strategic Management',    group: 'Group II', paper: 'Paper 6', total: 42 },
   ],
   'Foundation': [
-    { id: 'Acc',     name: 'Accounting',                           total: 30 },
-    { id: 'BizLaw',  name: 'Business Laws',                        total: 25 },
-    { id: 'QA',      name: 'Quantitative Aptitude',                total: 35 },
-    { id: 'BizEcon', name: 'Business Economics',                   total: 28 },
+    { id: 'PPA',     name: 'Principles & Practice of Accounting',            group: '',  paper: 'Paper 1', total: 30 },
+    { id: 'BizLaw',  name: 'Business Laws',                                  group: '',  paper: 'Paper 2', total: 25 },
+    { id: 'QA',      name: 'Quantitative Aptitude (Maths, LR & Stats)',      group: '',  paper: 'Paper 3', total: 35 },
+    { id: 'BizEcon', name: 'Business Economics',                             group: '',  paper: 'Paper 4', total: 28 },
   ],
   'Other': [
-    { id: 'S1', name: 'Subject 1', total: 30 },
-    { id: 'S2', name: 'Subject 2', total: 30 },
-    { id: 'S3', name: 'Subject 3', total: 30 },
+    { id: 'S1', name: 'Subject 1', group: '', paper: '', total: 30 },
+    { id: 'S2', name: 'Subject 2', group: '', paper: '', total: 30 },
+    { id: 'S3', name: 'Subject 3', group: '', paper: '', total: 30 },
   ],
 }
 

@@ -32,46 +32,63 @@ export function renderProgressCards(containerId, goal) {
   const el = document.getElementById(containerId)
   if (!el) return
   const subjects = getSubjectsForGoal(goal)
-  el.innerHTML = subjects.map(s => {
-    const p   = getProgress(s.id)
-    const pct = getCoveragePercent(s.id, s.total)
-    const status = pct === 0 ? 'Not Started' : pct >= 100 ? 'Completed' : 'In Progress'
-    const statusCls = pct === 0 ? 'badge-grey' : pct >= 100 ? 'badge-green' : 'badge-amber'
-    const lastStudied = p.lastStudied
-      ? daysSince(p.lastStudied) === 0 ? 'Today'
-        : daysSince(p.lastStudied) === 1 ? 'Yesterday'
-        : `${daysSince(p.lastStudied)} days ago`
-      : 'Never'
-    const circ = 2 * Math.PI * 28
-    const offset = circ - (pct / 100) * circ
-    return `
-      <div class="prog-card">
-        <div class="prog-card-top">
-          <span class="prog-card-name">${s.name}</span>
-          <span class="prog-badge ${statusCls}">${status}</span>
-        </div>
-        <div class="prog-card-ring-row">
-          <svg width="70" height="70" viewBox="0 0 70 70">
-            <circle cx="35" cy="35" r="28" fill="none" stroke="rgba(44,26,18,.08)" stroke-width="6"/>
-            <circle cx="35" cy="35" r="28" fill="none" stroke="#D4AF37" stroke-width="6"
-              stroke-linecap="round" stroke-dasharray="${circ}" stroke-dashoffset="${offset}"
-              transform="rotate(-90 35 35)" class="prog-ring-arc"/>
-            <text x="35" y="39" text-anchor="middle" font-size="13" font-weight="800" fill="#1A120B">${pct}%</text>
-          </svg>
-          <div class="prog-card-stats">
-            <div class="prog-stat"><span class="prog-stat-val">${p.topicsCovered}</span><span class="prog-stat-lbl"> / ${s.total} topics</span></div>
-            <div class="prog-stat"><span class="prog-stat-val">${p.hours}</span><span class="prog-stat-lbl"> hrs studied</span></div>
-            <div class="prog-stat-lbl">Last: ${lastStudied}</div>
-          </div>
-        </div>
-        <div class="subj-track" style="margin:12px 0 16px">
-          <div class="subj-fill" style="width:${pct}%" data-pct="${pct}"></div>
-        </div>
-        <button class="btn-update-prog" data-id="${s.id}" data-name="${s.name}" data-total="${s.total}">+ Update Progress</button>
-      </div>`
-  }).join('')
 
-  // Bind update buttons
+  // Group subjects
+  const groups = {}
+  subjects.forEach(s => {
+    const g = s.group || 'Subjects'
+    if (!groups[g]) groups[g] = []
+    groups[g].push(s)
+  })
+
+  let html = ''
+  Object.entries(groups).forEach(([groupName, subs]) => {
+    if (groupName) html += `<div class="prog-group-label">${groupName}</div>`
+    html += subs.map(s => {
+      const p   = getProgress(s.id)
+      const pct = getCoveragePercent(s.id, s.total)
+      const status = pct === 0 ? 'Not Started' : pct >= 100 ? 'Completed' : 'In Progress'
+      const statusCls = pct === 0 ? 'badge-grey' : pct >= 100 ? 'badge-green' : 'badge-amber'
+      const lastStudied = p.lastStudied
+        ? daysSince(p.lastStudied) === 0 ? 'Today'
+          : daysSince(p.lastStudied) === 1 ? 'Yesterday'
+          : `${daysSince(p.lastStudied)} days ago`
+        : 'Never'
+      const circ = 2 * Math.PI * 28
+      const offset = circ - (pct / 100) * circ
+      return `
+        <div class="prog-card">
+          <div class="prog-card-top">
+            <div>
+              ${s.paper ? `<span class="prog-paper-tag">${s.paper}</span>` : ''}
+              <span class="prog-card-name">${s.name}</span>
+            </div>
+            <span class="prog-badge ${statusCls}">${status}</span>
+          </div>
+          <div class="prog-card-ring-row">
+            <svg width="70" height="70" viewBox="0 0 70 70">
+              <circle cx="35" cy="35" r="28" fill="none" stroke="rgba(44,26,18,.08)" stroke-width="6"/>
+              <circle cx="35" cy="35" r="28" fill="none" stroke="#D4AF37" stroke-width="6"
+                stroke-linecap="round" stroke-dasharray="${circ}" stroke-dashoffset="${offset}"
+                transform="rotate(-90 35 35)" class="prog-ring-arc"/>
+              <text x="35" y="39" text-anchor="middle" font-size="13" font-weight="800" fill="#1A120B">${pct}%</text>
+            </svg>
+            <div class="prog-card-stats">
+              <div class="prog-stat"><span class="prog-stat-val">${p.topicsCovered}</span><span class="prog-stat-lbl"> / ${s.total} topics</span></div>
+              <div class="prog-stat"><span class="prog-stat-val">${p.hours}</span><span class="prog-stat-lbl"> hrs studied</span></div>
+              <div class="prog-stat-lbl">Last: ${lastStudied}</div>
+            </div>
+          </div>
+          <div class="subj-track" style="margin:12px 0 16px">
+            <div class="subj-fill" style="width:${pct}%" data-pct="${pct}"></div>
+          </div>
+          <button class="btn-update-prog" data-id="${s.id}" data-name="${s.name}" data-total="${s.total}">+ Update Progress</button>
+        </div>`
+    }).join('')
+  })
+
+  el.innerHTML = html
+
   el.querySelectorAll('.btn-update-prog').forEach(btn => {
     btn.addEventListener('click', () => openProgressModal(btn.dataset.id, btn.dataset.name, +btn.dataset.total))
   })

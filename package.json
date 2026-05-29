@@ -2,12 +2,16 @@
   "name": "ca-ranker-ai",
   "version": "1.0.0",
   "description": "CA Ranker AI — Premium EdTech SaaS for CA aspirants",
-  "main": "server.js",
+  "main": "server/server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
+    "client": "npm run dev --prefix client",
+    "server": "npm start --prefix server",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "dependencies": {
-    "express": "^4.22.1"
+    "bcryptjs": "^3.0.3",
+    "concurrently": "^9.2.1",
+    "express": "^4.22.1",
+    "jsonwebtoken": "^9.0.3"
   }
 }
