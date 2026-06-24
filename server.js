@@ -120,6 +120,9 @@ app.get('/api/auth/profile', protect, (req, res) => {
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'pages', 'index.html'))
 })
+app.get('/admin', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'pages', 'admin.html'))
+})
 app.get('/pages/:page', (req, res) => {
   const file = path.join(__dirname, 'public', 'pages', req.params.page)
   res.sendFile(file, err => {

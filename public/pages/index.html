@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -6,7 +6,7 @@
   <title>CA Ranker AI — Crack CA Final</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Sora:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=Sora:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
@@ -180,6 +180,21 @@
         </div>
 
       </div>
+
+      <!-- ① AIR RANK SLIDER -->
+      <div class="air-slider-wrap up" id="airSliderWrap">
+        <label class="air-slider-label" for="airRankSlider">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          Drag to set your target AIR
+        </label>
+        <div class="air-slider-row">
+          <span class="air-slider-min">1</span>
+          <input type="range" id="airRankSlider" class="air-range" min="1" max="500" value="100" aria-label="Target AIR rank" />
+          <span class="air-slider-max">500</span>
+        </div>
+        <div class="air-slider-msg" id="airSliderMsg">You're aiming for the top! Keep this energy every day.</div>
+      </div>
+
     </div>
   </section>
 
@@ -287,6 +302,166 @@
       <div class="slider-fade-l"></div>
       <div class="slider-fade-r"></div>
     </div>
+
+    <!-- ③ STUDY MODES — HORIZONTAL TABBED SHOWCASE -->
+    <div class="container">
+      <div class="study-modes-section up">
+        <div class="sec-head" style="margin-bottom:36px">
+          <p class="tag">AI Study Modes</p>
+          <h2 class="h2">Five ways AI <span class="underline">studies with you</span></h2>
+          <p class="feat-sub">Each mode is tuned for a different stage of your prep.</p>
+        </div>
+
+        <!-- Tab nav -->
+        <div class="sm-tabs" role="tablist">
+          <button class="sm-tbtn active" data-sm="0" role="tab" aria-selected="true">🧠 Quiz Me</button>
+          <button class="sm-tbtn" data-sm="1" role="tab" aria-selected="false">💡 Explain</button>
+          <button class="sm-tbtn" data-sm="2" role="tab" aria-selected="false">📋 Summarize</button>
+          <button class="sm-tbtn" data-sm="3" role="tab" aria-selected="false">⏱️ Mock Test</button>
+          <button class="sm-tbtn" data-sm="4" role="tab" aria-selected="false">🔍 Doubt</button>
+        </div>
+
+        <!-- Panels -->
+        <div class="sm-panels">
+
+          <!-- Panel 0: Quiz Me -->
+          <div class="sm-panel active" id="smp0" role="tabpanel">
+            <div class="sm-chat">
+              <div class="sm-chat-header">
+                <span class="sm-mode-badge">Quiz Me Mode</span>
+                <span class="sm-subject-chip">Financial Reporting · Chapter 12</span>
+              </div>
+              <div class="sm-bubble sm-bubble--ai">
+                <div class="sm-bubble-label">CA Ranker AI</div>
+                <p class="sm-q-text">Which of the following correctly describes the treatment of actuarial gains/losses under Ind AS 19?</p>
+                <div class="sm-options">
+                  <label class="sm-opt"><input type="radio" name="smq0" /> <span>A. Recognised in profit or loss in the period they arise</span></label>
+                  <label class="sm-opt"><input type="radio" name="smq0" /> <span>B. Recognised in OCI and never reclassified to P&amp;L</span></label>
+                  <label class="sm-opt sm-opt--correct"><input type="radio" name="smq0" checked /> <span>C. Recognised in OCI; accumulated in equity without recycling</span></label>
+                  <label class="sm-opt"><input type="radio" name="smq0" /> <span>D. Deferred and amortised using corridor method</span></label>
+                </div>
+              </div>
+              <div class="sm-bubble sm-bubble--user">
+                <span>C</span>
+              </div>
+              <div class="sm-bubble sm-bubble--ai sm-bubble--correct">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Correct! Actuarial gains/losses → OCI (no recycling). ICAI marks this as a frequently tested concept.
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel 1: Explain -->
+          <div class="sm-panel" id="smp1" role="tabpanel">
+            <div class="sm-chat">
+              <div class="sm-chat-header">
+                <span class="sm-mode-badge">Explain Mode</span>
+                <span class="sm-subject-chip">Direct Tax · Transfer Pricing</span>
+              </div>
+              <div class="sm-bubble sm-bubble--user">
+                Explain ALP under Transfer Pricing with a simple example.
+              </div>
+              <div class="sm-bubble sm-bubble--ai">
+                <div class="sm-bubble-label">CA Ranker AI</div>
+                <p><strong>Arm's Length Price (ALP)</strong> is the price at which two unrelated parties would transact in an open market — the standard used to evaluate international transactions between associated enterprises.</p>
+                <p style="margin-top:10px"><strong>Example:</strong> Infosys India sells software to Infosys USA at ₹50/unit. If comparable uncontrolled transactions show a market price of ₹80/unit, the ALP is ₹80. The ₹30 shortfall per unit is added back to Infosys India's income under Section 92C.</p>
+                <div class="sm-explain-tag">📌 ICAI Exam Tip: Always mention the "Most Appropriate Method" — TNMM is commonly tested.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel 2: Summarize -->
+          <div class="sm-panel" id="smp2" role="tabpanel">
+            <div class="sm-chat">
+              <div class="sm-chat-header">
+                <span class="sm-mode-badge">Summarize Mode</span>
+                <span class="sm-subject-chip">Auditing &amp; Ethics · SA 700 Series</span>
+              </div>
+              <div class="sm-bubble sm-bubble--user">
+                Summarize the SA 700 Series for quick revision.
+              </div>
+              <div class="sm-bubble sm-bubble--ai">
+                <div class="sm-bubble-label">CA Ranker AI</div>
+                <p class="sm-sum-title">SA 700 Series — Audit Reporting Standards</p>
+                <ul class="sm-sum-list">
+                  <li><span class="sm-sum-dot"></span><strong>SA 700</strong> — Forming and expressing an opinion on financial statements</li>
+                  <li><span class="sm-sum-dot"></span><strong>SA 701</strong> — Communicating Key Audit Matters (KAM) in auditor's report</li>
+                  <li><span class="sm-sum-dot"></span><strong>SA 705</strong> — Modifications to the auditor's report (Qualified / Adverse / Disclaimer)</li>
+                  <li><span class="sm-sum-dot"></span><strong>SA 706</strong> — Emphasis of Matter &amp; Other Matter paragraphs</li>
+                  <li><span class="sm-sum-dot"></span><strong>SA 710</strong> — Comparative information — corresponding figures &amp; comparative FS</li>
+                </ul>
+                <div class="sm-explain-tag">🔁 Spaced review scheduled in 3 days based on your weak areas.</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel 3: Mock Test -->
+          <div class="sm-panel" id="smp3" role="tabpanel">
+            <div class="sm-chat">
+              <div class="sm-chat-header">
+                <span class="sm-mode-badge">Mock Test Mode</span>
+                <span class="sm-subject-chip">Indirect Tax · GST</span>
+                <span class="sm-timer-chip" id="smTimer">12:47</span>
+              </div>
+              <div class="sm-mock-info">
+                <span>3 Questions &nbsp;·&nbsp; 30 Marks &nbsp;·&nbsp; 15 min</span>
+                <span class="sm-mock-prog">Q <strong>2</strong> / 3</span>
+              </div>
+              <div class="sm-bubble sm-bubble--ai">
+                <div class="sm-bubble-label">Question 2 of 3</div>
+                <p class="sm-q-text">Under GST, the time of supply for a continuous supply of services where the due date of payment is ascertainable from the contract is:</p>
+                <div class="sm-options">
+                  <label class="sm-opt"><input type="radio" name="smq3" /> <span>A. Date of invoice</span></label>
+                  <label class="sm-opt"><input type="radio" name="smq3" /> <span>B. Date of payment</span></label>
+                  <label class="sm-opt"><input type="radio" name="smq3" /> <span>C. Date of completion of service</span></label>
+                  <label class="sm-opt sm-opt--selected"><input type="radio" name="smq3" checked /> <span>D. Due date of payment as per contract</span></label>
+                </div>
+              </div>
+              <div class="sm-mock-nav">
+                <button class="sm-nav-btn sm-nav-prev">← Prev</button>
+                <button class="sm-nav-btn sm-nav-next">Next →</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel 4: Doubt -->
+          <div class="sm-panel" id="smp4" role="tabpanel">
+            <div class="sm-chat">
+              <div class="sm-chat-header">
+                <span class="sm-mode-badge">Doubt Mode</span>
+                <span class="sm-subject-chip">Corporate Laws · SEBI</span>
+              </div>
+              <div class="sm-bubble sm-bubble--user">
+                What is the difference between SEBI LODR and the Companies Act 2013 disclosure norms? I always get confused.
+              </div>
+              <div class="sm-bubble sm-bubble--ai">
+                <div class="sm-bubble-label">CA Ranker AI</div>
+                <p>Great question — this confusion is common! Here's the clearest way to think about it:</p>
+                <div class="sm-doubt-table">
+                  <div class="sm-dt-row sm-dt-head">
+                    <span>Aspect</span><span>LODR (SEBI)</span><span>Companies Act 2013</span>
+                  </div>
+                  <div class="sm-dt-row">
+                    <span>Applies to</span><span>Listed companies only</span><span>All companies</span>
+                  </div>
+                  <div class="sm-dt-row">
+                    <span>Authority</span><span>SEBI</span><span>MCA / ROC</span>
+                  </div>
+                  <div class="sm-dt-row">
+                    <span>Focus</span><span>Investor protection, market integrity</span><span>Corporate governance broadly</span>
+                  </div>
+                  <div class="sm-dt-row">
+                    <span>Overlap</span><span colspan="2">RPT, Board composition, Audit Committee — both apply, stricter governs</span>
+                  </div>
+                </div>
+                <div class="sm-explain-tag">💡 ICAI tip: In IBS questions, always check if the entity is listed — LODR kicks in additionally.</div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /sm-panels -->
+      </div>
+    </div>
   </section>
 
   <!-- TRACK WHAT MATTERS -->
@@ -301,86 +476,225 @@
       <div class="track-grid">
 
         <!-- Card 1: Performance -->
-        <div class="track-card up" style="--delay:.05s">
-          <div class="tc-icon-wrap">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <div class="lux-card up" style="--delay:.05s">
+          <div class="lux-card-header">
+            <div class="lux-icon-wrap">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <span class="lux-rank-badge">Top 5%</span>
           </div>
-          <h3 class="tc-title">Performance</h3>
-          <p class="tc-sub">See exactly where you stand</p>
-          <div class="tc-visual">
-            <div class="tc-bar-row">
-              <span class="tc-bar-label">SFM</span>
-              <div class="tc-bar-track"><div class="tc-bar-fill" style="--tw:55%"></div></div>
-              <span class="tc-bar-pct">55%</span>
+          <h3 class="lux-title">Performance</h3>
+          <p class="lux-sub">See exactly where you stand</p>
+
+          <div class="lux-bars">
+            <div class="lux-bar-row">
+              <span class="lux-bar-label">Financial Reporting</span>
+              <div class="lux-bar-track"><div class="lux-bar-fill" style="--tw:78%"></div></div>
+              <span class="lux-bar-pct">78%</span>
             </div>
-            <div class="tc-bar-row">
-              <span class="tc-bar-label">Audit</span>
-              <div class="tc-bar-track"><div class="tc-bar-fill" style="--tw:82%"></div></div>
-              <span class="tc-bar-pct">82%</span>
+            <div class="lux-bar-row">
+              <span class="lux-bar-label">Direct Tax</span>
+              <div class="lux-bar-track"><div class="lux-bar-fill" style="--tw:62%"></div></div>
+              <span class="lux-bar-pct">62%</span>
             </div>
-            <div class="tc-bar-row">
-              <span class="tc-bar-label">Corp Law</span>
-              <div class="tc-bar-track"><div class="tc-bar-fill" style="--tw:68%"></div></div>
-              <span class="tc-bar-pct">68%</span>
+            <div class="lux-bar-row">
+              <span class="lux-bar-label">Audit & Ethics</span>
+              <div class="lux-bar-track"><div class="lux-bar-fill" style="--tw:85%"></div></div>
+              <span class="lux-bar-pct">85%</span>
+            </div>
+            <div class="lux-bar-row">
+              <span class="lux-bar-label">Corp Laws</span>
+              <div class="lux-bar-track"><div class="lux-bar-fill" style="--tw:54%"></div></div>
+              <span class="lux-bar-pct">54%</span>
             </div>
           </div>
-          <ul class="tc-list">
-            <li><span class="tc-dot"></span>Mock scores</li>
-            <li><span class="tc-dot"></span>Subject coverage</li>
-            <li><span class="tc-dot"></span>Weekly trend</li>
-          </ul>
+
+          <div class="lux-footer">
+            <div class="lux-metric"><span class="lux-metric-val">AIR 47</span><span class="lux-metric-lbl">Projected Rank</span></div>
+            <div class="lux-divider"></div>
+            <div class="lux-metric"><span class="lux-metric-val">↑ 12%</span><span class="lux-metric-lbl">This Week</span></div>
+          </div>
         </div>
 
-        <!-- Card 2: Weak Areas -->
-        <div class="track-card up" style="--delay:.12s">
-          <div class="tc-icon-wrap">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <!-- Card 2: Critical Focus -->
+        <div class="lux-card up" style="--delay:.12s">
+          <div class="lux-card-header">
+            <div class="lux-icon-wrap">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <span class="lux-focus-badge">4 Gaps Found</span>
           </div>
-          <h3 class="tc-title">Weak Areas</h3>
-          <p class="tc-sub">AI flags what needs attention</p>
-          <div class="tc-visual tc-tags-wrap">
-            <span class="tc-tag tc-tag--hot">DT · Indirect Tax</span>
-            <span class="tc-tag tc-tag--mid">SFM · Derivatives</span>
-            <span class="tc-tag tc-tag--low">Audit · SA 700</span>
-            <span class="tc-tag tc-tag--low">Corp Law · NCLT</span>
+          <h3 class="lux-title">Critical Focus</h3>
+          <p class="lux-sub">AI flags what needs attention</p>
+
+          <div class="lux-gaps">
+            <div class="lux-gap-row">
+              <span class="lux-priority lux-priority--high"></span>
+              <span class="lux-gap-name">DT · Transfer Pricing</span>
+              <span class="lux-gap-acc lux-acc--low">38%</span>
+            </div>
+            <div class="lux-gap-row">
+              <span class="lux-priority lux-priority--high"></span>
+              <span class="lux-gap-name">IDT · Customs & FTP</span>
+              <span class="lux-gap-acc lux-acc--low">42%</span>
+            </div>
+            <div class="lux-gap-row">
+              <span class="lux-priority lux-priority--mid"></span>
+              <span class="lux-gap-name">FR · Consolidation</span>
+              <span class="lux-gap-acc lux-acc--mid">56%</span>
+            </div>
+            <div class="lux-gap-row">
+              <span class="lux-priority lux-priority--low"></span>
+              <span class="lux-gap-name">Audit · SA 700 Series</span>
+              <span class="lux-gap-acc lux-acc--mid">61%</span>
+            </div>
           </div>
-          <ul class="tc-list">
-            <li><span class="tc-dot"></span>Auto detection</li>
-            <li><span class="tc-dot"></span>Priority focus</li>
-            <li><span class="tc-dot"></span>Smart suggestions</li>
-          </ul>
+
+          <button class="lux-optimize-btn">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Optimize All
+          </button>
         </div>
 
         <!-- Card 3: Consistency -->
-        <div class="track-card up" style="--delay:.19s">
-          <div class="tc-icon-wrap">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-          </div>
-          <h3 class="tc-title">Consistency</h3>
-          <p class="tc-sub">Build the habit that builds rank</p>
-          <div class="tc-visual tc-streak-wrap">
-            <div class="tc-streak-num"><span class="tc-streak-val" data-count="14">0</span><span class="tc-streak-unit">day streak 🔥</span></div>
-            <div class="tc-streak-grid">
-              <span class="tc-day tc-day--done"></span><span class="tc-day tc-day--done"></span>
-              <span class="tc-day tc-day--done"></span><span class="tc-day tc-day--done"></span>
-              <span class="tc-day tc-day--done"></span><span class="tc-day tc-day--done"></span>
-              <span class="tc-day tc-day--done"></span><span class="tc-day tc-day--done"></span>
-              <span class="tc-day tc-day--done"></span><span class="tc-day tc-day--done"></span>
-              <span class="tc-day tc-day--done"></span><span class="tc-day tc-day--done"></span>
-              <span class="tc-day tc-day--done"></span><span class="tc-day tc-day--done"></span>
-              <span class="tc-day tc-day--today"></span><span class="tc-day"></span>
-              <span class="tc-day"></span><span class="tc-day"></span>
-              <span class="tc-day"></span><span class="tc-day"></span>
-              <span class="tc-day"></span>
+        <div class="lux-card up" style="--delay:.19s">
+          <div class="lux-card-header">
+            <div class="lux-icon-wrap">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
             </div>
           </div>
-          <ul class="tc-list">
-            <li><span class="tc-dot"></span>Daily tracking</li>
-            <li><span class="tc-dot"></span>Study streak</li>
-            <li><span class="tc-dot"></span>Session logs</li>
-          </ul>
+          <h3 class="lux-title">Consistency</h3>
+          <p class="lux-sub">Build the habit that builds rank</p>
+
+          <div class="lux-streak-wrap">
+            <div class="lux-streak-num">
+              <span class="lux-streak-val" data-count="14">0</span>
+              <div class="lux-streak-meta">
+                <span class="lux-streak-label">day streak</span>
+                <span class="lux-streak-fire">🔥</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lux-heatmap">
+            <div class="lux-heatmap-row">
+              <span class="lux-heat lux-heat--4"></span><span class="lux-heat lux-heat--3"></span><span class="lux-heat lux-heat--4"></span><span class="lux-heat lux-heat--2"></span><span class="lux-heat lux-heat--4"></span><span class="lux-heat lux-heat--3"></span><span class="lux-heat lux-heat--4"></span>
+            </div>
+            <div class="lux-heatmap-row">
+              <span class="lux-heat lux-heat--3"></span><span class="lux-heat lux-heat--4"></span><span class="lux-heat lux-heat--2"></span><span class="lux-heat lux-heat--4"></span><span class="lux-heat lux-heat--3"></span><span class="lux-heat lux-heat--4"></span><span class="lux-heat lux-heat--2"></span>
+            </div>
+            <div class="lux-heatmap-row">
+              <span class="lux-heat lux-heat--4"></span><span class="lux-heat lux-heat--today"></span><span class="lux-heat lux-heat--0"></span><span class="lux-heat lux-heat--0"></span><span class="lux-heat lux-heat--0"></span><span class="lux-heat lux-heat--0"></span><span class="lux-heat lux-heat--0"></span>
+            </div>
+          </div>
+
+          <div class="lux-footer">
+            <div class="lux-metric"><span class="lux-metric-val">6.2h</span><span class="lux-metric-lbl">Avg Session</span></div>
+            <div class="lux-divider"></div>
+            <div class="lux-metric"><span class="lux-metric-val">87h</span><span class="lux-metric-lbl">Total Hours</span></div>
+          </div>
         </div>
 
+      </div>
+    </div>
+  </section>
+
+  <!-- GITHUB-STYLE STUDY HEATMAP -->
+  <section class="heatmap-sec sec-alt">
+    <div class="container">
+      <div class="sec-head">
+        <p class="tag">Study Activity</p>
+        <h2 class="h2 up">Your consistency, <span class="underline">visualised</span></h2>
+        <p class="feat-sub up">Every day you study lights up the grid. Build the chain. Don't break it.</p>
+      </div>
+      <div class="heatmap-card up">
+        <div class="heatmap-top">
+          <div class="heatmap-legend-left">
+            <span class="heatmap-streak-big" data-count="47">0</span>
+            <span class="heatmap-streak-label">day streak 🔥</span>
+          </div>
+          <div class="heatmap-stats">
+            <div class="hm-stat"><span class="hm-stat-val">284</span><span class="hm-stat-lbl">hrs studied</span></div>
+            <div class="hm-stat-div"></div>
+            <div class="hm-stat"><span class="hm-stat-val">6.2</span><span class="hm-stat-lbl">avg hrs/day</span></div>
+            <div class="hm-stat-div"></div>
+            <div class="hm-stat"><span class="hm-stat-val">AIR 47</span><span class="hm-stat-lbl">projected</span></div>
+          </div>
+        </div>
+        <div class="heatmap-months">
+          <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span><span>May</span><span>Jun</span><span>Jul</span><span>Aug</span><span>Sep</span><span>Oct</span><span>Nov</span><span>Dec</span>
+        </div>
+        <div class="heatmap-grid" id="heatmapGrid"></div>
+        <div class="heatmap-legend">
+          <span class="hm-leg-label">Less</span>
+          <span class="hm-leg-cell hm-c0"></span>
+          <span class="hm-leg-cell hm-c1"></span>
+          <span class="hm-leg-cell hm-c2"></span>
+          <span class="hm-leg-cell hm-c3"></span>
+          <span class="hm-leg-cell hm-c4"></span>
+          <span class="hm-leg-label">More</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AIR SOCIAL PROOF BADGES -->
+  <section class="airproof-sec">
+    <div class="container">
+      <div class="sec-head">
+        <p class="tag">Real Results</p>
+        <h2 class="h2 up">CA aspirants who <span class="underline">trusted the process</span></h2>
+        <p class="feat-sub up">Their consistency. Their AIR. Their proof.</p>
+      </div>
+      <div class="airproof-grid up">
+        <div class="airproof-card">
+          <div class="airproof-avatar">AS</div>
+          <div class="airproof-info">
+            <div class="airproof-name">Aman Sharma</div>
+            <div class="airproof-exam">CA Final · Nov 2024</div>
+            <div class="airproof-quote">"The mock test engine matched ICAI patterns exactly. I stopped second-guessing my answers."</div>
+          </div>
+          <div class="airproof-badge">
+            <span class="airproof-air">AIR 23</span>
+            <span class="airproof-days">91 days</span>
+          </div>
+        </div>
+        <div class="airproof-card">
+          <div class="airproof-avatar">PJ</div>
+          <div class="airproof-info">
+            <div class="airproof-name">Priya Joshi</div>
+            <div class="airproof-exam">CA Final · May 2024</div>
+            <div class="airproof-quote">"The weak area detection caught my DT blind spots 3 weeks before the exam. Game changer."</div>
+          </div>
+          <div class="airproof-badge">
+            <span class="airproof-air">AIR 47</span>
+            <span class="airproof-days">78 days</span>
+          </div>
+        </div>
+        <div class="airproof-card">
+          <div class="airproof-avatar">RK</div>
+          <div class="airproof-info">
+            <div class="airproof-name">Rahul Kapoor</div>
+            <div class="airproof-exam">CA Inter · Nov 2024</div>
+            <div class="airproof-quote">"Pomodoro + progress tracking kept me consistent for 3 months straight. 14hr days felt manageable."</div>
+          </div>
+          <div class="airproof-badge">
+            <span class="airproof-air">AIR 12</span>
+            <span class="airproof-days">84 days</span>
+          </div>
+        </div>
+        <div class="airproof-card">
+          <div class="airproof-avatar">NS</div>
+          <div class="airproof-info">
+            <div class="airproof-name">Neha Singh</div>
+            <div class="airproof-exam">CA Final · May 2025</div>
+            <div class="airproof-quote">"I used the Doubt mode every single day. My FR concepts have never been this sharp."</div>
+          </div>
+          <div class="airproof-badge">
+            <span class="airproof-air">AIR 61</span>
+            <span class="airproof-days">103 days</span>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -610,6 +924,78 @@
     </div>
   </section>
 
+  <!-- ④ LIVE ONBOARDING PREVIEW -->
+  <section class="onboard-sec sec-alt">
+    <div class="container">
+      <div class="sec-head">
+        <p class="tag">Personalisation</p>
+        <h2 class="h2 up">See it work in <span class="underline">2 seconds</span></h2>
+        <p class="feat-sub up">Pick your exam and weak subject — watch AI build your plan instantly.</p>
+      </div>
+
+      <div class="onboard-card up">
+        <div class="onboard-inputs">
+          <div class="onboard-field">
+            <label class="onboard-label" for="obExam">Select your exam</label>
+            <select class="onboard-select" id="obExam">
+              <option value="">— Choose exam —</option>
+              <option value="final">CA Final</option>
+              <option value="inter">CA Intermediate</option>
+              <option value="foundation">CA Foundation</option>
+            </select>
+          </div>
+          <div class="onboard-field">
+            <label class="onboard-label" for="obSubject">Select your weak area</label>
+            <select class="onboard-select" id="obSubject">
+              <option value="">— Choose subject —</option>
+              <option value="FR">Financial Reporting</option>
+              <option value="AFM">Advanced Financial Management</option>
+              <option value="Audit">Auditing &amp; Ethics</option>
+              <option value="DT">Direct Tax Laws</option>
+              <option value="IDT">Indirect Tax Laws</option>
+              <option value="IBS">Integrated Business Solutions</option>
+              <option value="Corp">Corporate &amp; Other Laws</option>
+              <option value="SCMPE">Strategic Cost Management</option>
+            </select>
+          </div>
+          <button class="onboard-btn btn-p" id="obGenerateBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Generate My Plan
+          </button>
+        </div>
+
+        <!-- Result area -->
+        <div class="onboard-result" id="obResult" aria-live="polite">
+          <div class="onboard-placeholder" id="obPlaceholder">
+            <div class="onboard-ph-ring">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+            </div>
+            <p>Your personalised plan will appear here.</p>
+          </div>
+          <div class="onboard-loading" id="obLoading" style="display:none">
+            <div class="ob-typing-dots"><span></span><span></span><span></span></div>
+            <span class="ob-loading-text">AI is building your plan…</span>
+          </div>
+          <div class="onboard-plan" id="obPlan" style="display:none">
+            <div class="ob-plan-header">
+              <div class="ob-plan-icon">📚</div>
+              <div>
+                <div class="ob-plan-subject" id="obPlanSubject">Financial Reporting</div>
+                <div class="ob-plan-meta" id="obPlanMeta">CA Final · 3-day recovery sprint</div>
+              </div>
+              <div class="ob-plan-hours" id="obPlanHours">4.5 hrs/day</div>
+            </div>
+            <div class="ob-tasks" id="obTasks"></div>
+            <div class="ob-plan-footer">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+              Plan generated by CA Ranker AI · Based on ICAI exam patterns
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="cta">
     <div class="cta-o1"></div><div class="cta-o2"></div>
@@ -619,7 +1005,6 @@
       <p class="cta-sub">Join thousands of CA Final aspirants who study smarter with AI.</p>
       <div class="cta-btns">
         <a href="/pages/signup.html" class="btn-p btn-lg">Create free account</a>
-        <a href="https://capable-cendol-74a898.netlify.app" target="_blank" class="btn-g">Try the app →</a>
       </div>
     </div>
   </section>

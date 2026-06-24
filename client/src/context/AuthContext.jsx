@@ -4,7 +4,7 @@ import axios from 'axios';
 export const AuthContext = createContext();
 
 // Create instances of axios with default configuration
-const API = axios.create({
+export const API = axios.create({
   baseURL: '/api',
 });
 

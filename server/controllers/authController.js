@@ -1,32 +1,31 @@
-const User = require('../models/User');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const fs = require('fs');
 const path = require('path');
 
-const JSON_DB_PATH = path.join(__dirname, '..', 'data', 'users.json');
+const JSON_USERS_PATH = path.join(__dirname, '..', 'data', 'users.json');
 
-// Helper to ensure JSON DB exists and return users
+// Helper to ensure JSON file database exists and return users
 const getJsonUsers = () => {
-  const dir = path.dirname(JSON_DB_PATH);
+  const dir = path.dirname(JSON_USERS_PATH);
   if (!fs.existsSync(dir)) {
     fs.mkdirSync(dir, { recursive: true });
   }
-  if (!fs.existsSync(JSON_DB_PATH)) {
-    fs.writeFileSync(JSON_DB_PATH, JSON.stringify([]));
+  if (!fs.existsSync(JSON_USERS_PATH)) {
+    fs.writeFileSync(JSON_USERS_PATH, JSON.stringify([]));
     return [];
   }
   try {
-    const data = fs.readFileSync(JSON_DB_PATH, 'utf-8');
+    const data = fs.readFileSync(JSON_USERS_PATH, 'utf-8');
     return JSON.parse(data || '[]');
   } catch (err) {
     return [];
   }
 };
 
-// Helper to save users to JSON DB
+// Helper to save users to JSON database
 const saveJsonUsers = (users) => {
-  fs.writeFileSync(JSON_DB_PATH, JSON.stringify(users, null, 2));
+  fs.writeFileSync(JSON_USERS_PATH, JSON.stringify(users, null, 2));
 };
 
 // Helper to generate JWT token
@@ -43,86 +42,52 @@ exports.registerUser = async (req, res) => {
   try {
     const { fullName, email, password, examLevel, targetAIR, dailyStudyGoal } = req.body;
 
-    // --- FALLBACK JSON DB MODE ---
-    if (process.env.USE_JSON_DB === 'true') {
-      const users = getJsonUsers();
-      const userExists = users.find(u => u.email === email.toLowerCase());
-
-      if (userExists) {
-        return res.status(400).json({ success: false, message: 'User already exists' });
-      }
-
-      // Hash password manually
-      const salt = await bcrypt.genSalt(10);
-      const hashedPassword = await bcrypt.hash(password, salt);
-
-      const newUser = {
-        _id: 'local_' + Date.now(),
-        fullName,
-        email: email.toLowerCase(),
-        password: hashedPassword,
-        examLevel,
-        targetAIR: targetAIR ? Number(targetAIR) : 100,
-        dailyStudyGoal: dailyStudyGoal ? Number(dailyStudyGoal) : 6,
-        streak: 0,
-        totalStudyHours: 0,
-        createdAt: new Date(),
-        updatedAt: new Date()
-      };
-
-      users.push(newUser);
-      saveJsonUsers(users);
-
-      return res.status(201).json({
-        success: true,
-        token: generateToken(newUser._id),
-        user: {
-          id: newUser._id,
-          fullName: newUser.fullName,
-          email: newUser.email,
-          examLevel: newUser.examLevel,
-          targetAIR: newUser.targetAIR,
-          dailyStudyGoal: newUser.dailyStudyGoal,
-          streak: newUser.streak,
-          totalStudyHours: newUser.totalStudyHours,
-        },
-      });
+    if (!fullName || !email || !password || !examLevel) {
+      return res.status(400).json({ success: false, message: 'Please provide all required fields' });
     }
 
-    // --- STANDARD MONGODB MODE ---
-    const userExists = await User.findOne({ email });
+    const users = getJsonUsers();
+    const userExists = users.find(u => u.email === email.toLowerCase());
 
     if (userExists) {
       return res.status(400).json({ success: false, message: 'User already exists' });
     }
 
-    const user = await User.create({
+    // Hash password securely with bcrypt
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
+
+    const newUser = {
+      _id: 'user_' + Date.now(),
       fullName,
-      email,
-      password,
+      email: email.toLowerCase(),
+      password: hashedPassword,
       examLevel,
       targetAIR: targetAIR ? Number(targetAIR) : 100,
       dailyStudyGoal: dailyStudyGoal ? Number(dailyStudyGoal) : 6,
-    });
+      streak: 0,
+      totalStudyHours: 0,
+      createdAt: new Date(),
+      updatedAt: new Date()
+    };
 
-    if (user) {
-      res.status(201).json({
-        success: true,
-        token: generateToken(user._id),
-        user: {
-          id: user._id,
-          fullName: user.fullName,
-          email: user.email,
-          examLevel: user.examLevel,
-          targetAIR: user.targetAIR,
-          dailyStudyGoal: user.dailyStudyGoal,
-          streak: user.streak,
-          totalStudyHours: user.totalStudyHours,
-        },
-      });
-    } else {
-      res.status(400).json({ success: false, message: 'Invalid user data' });
-    }
+    users.push(newUser);
+    saveJsonUsers(users);
+
+    res.status(201).json({
+      success: true,
+      token: generateToken(newUser._id),
+      user: {
+        id: newUser._id,
+        fullName: newUser.fullName,
+        email: newUser.email,
+        examLevel: newUser.examLevel,
+        targetAIR: newUser.targetAIR,
+        dailyStudyGoal: newUser.dailyStudyGoal,
+        streak: newUser.streak,
+        totalStudyHours: newUser.totalStudyHours,
+      },
+    });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
@@ -135,45 +100,18 @@ exports.loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // --- FALLBACK JSON DB MODE ---
-    if (process.env.USE_JSON_DB === 'true') {
-      const users = getJsonUsers();
-      const user = users.find(u => u.email === email.toLowerCase());
-
-      if (!user) {
-        return res.status(401).json({ success: false, message: 'Invalid email or password' });
-      }
-
-      const isMatch = await bcrypt.compare(password, user.password);
-
-      if (!isMatch) {
-        return res.status(401).json({ success: false, message: 'Invalid email or password' });
-      }
-
-      return res.json({
-        success: true,
-        token: generateToken(user._id),
-        user: {
-          id: user._id,
-          fullName: user.fullName,
-          email: user.email,
-          examLevel: user.examLevel,
-          targetAIR: user.targetAIR,
-          dailyStudyGoal: user.dailyStudyGoal,
-          streak: user.streak,
-          totalStudyHours: user.totalStudyHours,
-        },
-      });
+    if (!email || !password) {
+      return res.status(400).json({ success: false, message: 'Please provide email and password' });
     }
 
-    // --- STANDARD MONGODB MODE ---
-    const user = await User.findOne({ email }).select('+password');
+    const users = getJsonUsers();
+    const user = users.find(u => u.email === email.toLowerCase());
 
     if (!user) {
       return res.status(401).json({ success: false, message: 'Invalid email or password' });
     }
 
-    const isMatch = await user.matchPassword(password);
+    const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
       return res.status(401).json({ success: false, message: 'Invalid email or password' });
@@ -203,32 +141,8 @@ exports.loginUser = async (req, res) => {
 // @access  Private
 exports.getProfile = async (req, res) => {
   try {
-    // --- FALLBACK JSON DB MODE ---
-    if (process.env.USE_JSON_DB === 'true') {
-      const users = getJsonUsers();
-      const user = users.find(u => u._id === req.user.id);
-
-      if (user) {
-        return res.json({
-          success: true,
-          user: {
-            id: user._id,
-            fullName: user.fullName,
-            email: user.email,
-            examLevel: user.examLevel,
-            targetAIR: user.targetAIR,
-            dailyStudyGoal: user.dailyStudyGoal,
-            streak: user.streak,
-            totalStudyHours: user.totalStudyHours,
-          },
-        });
-      } else {
-        return res.status(404).json({ success: false, message: 'User not found' });
-      }
-    }
-
-    // --- STANDARD MONGODB MODE ---
-    const user = await User.findById(req.user.id);
+    const users = getJsonUsers();
+    const user = users.find(u => u._id === req.user.id);
 
     if (user) {
       res.json({

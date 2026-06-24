@@ -207,3 +207,224 @@ document.querySelectorAll('.up:not(.hero-inner .up)').forEach(el => io.observe(e
   }, { threshold: 0.5 })
   obs.observe(proofEl)
 })()
+
+
+/* ── ① AIR RANK SLIDER ── */
+;(function () {
+  const slider   = document.getElementById('airRankSlider')
+  const airSub   = document.querySelector('.air-sub')
+  const airArc   = document.getElementById('airArc')
+  const msgEl    = document.getElementById('airSliderMsg')
+  if (!slider || !airSub || !airArc) return
+
+  const CIRCUM = 974 // stroke-dasharray value
+  const MAX    = 500
+
+  const messages = {
+    top:    'You\'re aiming for the top! Keep this energy every day.',
+    great:  'Excellent target! Consistency and AI will get you there.',
+    good:   'Solid goal. Focus on weak areas and mock tests.',
+    steady: 'Every rank counts. Start building your strategy today.',
+    start:  'Great starting point! Use AI tools to move up fast.'
+  }
+
+  function getMsg (rank) {
+    if (rank <= 10)  return messages.top
+    if (rank <= 50)  return messages.great
+    if (rank <= 100) return messages.good
+    if (rank <= 250) return messages.steady
+    return messages.start
+  }
+
+  function updateSlider (rank) {
+    // Update label inside ring
+    airSub.textContent = '< ' + rank
+
+    // Arc fill: rank 1 = full circle, rank MAX = ~5% fill (so it's always visible)
+    const fillRatio = 1 - (rank - 1) / (MAX - 1)
+    const offset    = CIRCUM - (CIRCUM * (0.05 + fillRatio * 0.95))
+    airArc.style.strokeDashoffset    = offset
+    airArc.style.transition          = 'stroke-dashoffset .25s cubic-bezier(.4,0,.2,1)'
+    airArc.style.animation           = 'none' // override CSS keyframe when interacting
+
+    // Slider track gradient
+    const pct = ((rank - 1) / (MAX - 1) * 100).toFixed(1)
+    slider.style.setProperty('--val', pct + '%')
+
+    // Message
+    msgEl.textContent = getMsg(rank)
+  }
+
+  // Init on load with default value
+  updateSlider(parseInt(slider.value, 10))
+
+  slider.addEventListener('input', () => {
+    updateSlider(parseInt(slider.value, 10))
+  })
+})()
+
+/* ── ③ STUDY MODES TABS ── */
+;(function () {
+  document.querySelectorAll('.sm-tbtn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = btn.dataset.sm
+      document.querySelectorAll('.sm-tbtn').forEach(b => {
+        b.classList.remove('active')
+        b.setAttribute('aria-selected', 'false')
+      })
+      document.querySelectorAll('.sm-panel').forEach(p => p.classList.remove('active'))
+      btn.classList.add('active')
+      btn.setAttribute('aria-selected', 'true')
+      const panel = document.getElementById('smp' + idx)
+      if (panel) panel.classList.add('active')
+    })
+  })
+
+  // Mock test countdown timer
+  let mockSeconds = 12 * 60 + 47
+  const timerEl   = document.getElementById('smTimer')
+  if (timerEl) {
+    setInterval(() => {
+      if (mockSeconds > 0) mockSeconds--
+      const m = String(Math.floor(mockSeconds / 60)).padStart(2, '0')
+      const s = String(mockSeconds % 60).padStart(2, '0')
+      timerEl.textContent = m + ':' + s
+    }, 1000)
+  }
+})()
+
+/* ── ④ LIVE ONBOARDING PREVIEW ── */
+;(function () {
+  const btn         = document.getElementById('obGenerateBtn')
+  const placeholder = document.getElementById('obPlaceholder')
+  const loading     = document.getElementById('obLoading')
+  const plan        = document.getElementById('obPlan')
+  const examSel     = document.getElementById('obExam')
+  const subjSel     = document.getElementById('obSubject')
+  const planSubject = document.getElementById('obPlanSubject')
+  const planMeta    = document.getElementById('obPlanMeta')
+  const planHours   = document.getElementById('obPlanHours')
+  const planTasks   = document.getElementById('obTasks')
+  if (!btn) return
+
+  const planData = {
+    FR: {
+      name: 'Financial Reporting',
+      hours: '4.5 hrs/day',
+      tasks: [
+        { text: 'Revise Ind AS 19 & 109 — key measurement principles', time: '1.5 hrs' },
+        { text: 'Attempt 10 ICAI MCQs on Consolidation (AS 21)', time: '1 hr' },
+        { text: 'Write 2 full descriptive answers under timed conditions', time: '2 hrs' }
+      ]
+    },
+    AFM: {
+      name: 'Advanced Financial Management',
+      hours: '5 hrs/day',
+      tasks: [
+        { text: 'Practice 5 derivatives pricing problems (Black-Scholes)', time: '2 hrs' },
+        { text: 'Revise Foreign Exchange Risk — hedging strategies summary', time: '1.5 hrs' },
+        { text: 'Solve 3 past ICAI questions on Capital Budgeting with NPV', time: '1.5 hrs' }
+      ]
+    },
+    Audit: {
+      name: 'Auditing & Ethics',
+      hours: '3.5 hrs/day',
+      tasks: [
+        { text: 'Read & mind-map SA 700 Series (SA 700, 701, 705, 706)', time: '1.5 hrs' },
+        { text: 'Practice short-note questions on CARO 2020 reporting', time: '1 hr' },
+        { text: 'Revise Professional Ethics — ICAI Code key clauses', time: '1 hr' }
+      ]
+    },
+    DT: {
+      name: 'Direct Tax Laws',
+      hours: '5 hrs/day',
+      tasks: [
+        { text: 'Revise Transfer Pricing — methods & documentation', time: '2 hrs' },
+        { text: 'Solve 6 computation problems on Business Income', time: '2 hrs' },
+        { text: 'Flashcard drill on Section 80 deductions & limits', time: '1 hr' }
+      ]
+    },
+    IDT: {
+      name: 'Indirect Tax Laws',
+      hours: '4 hrs/day',
+      tasks: [
+        { text: 'Revise Time & Place of Supply rules with examples', time: '1.5 hrs' },
+        { text: 'Attempt 15 MCQs on Input Tax Credit conditions', time: '1.5 hrs' },
+        { text: 'Summarise Custom Duty valuation methods in notes', time: '1 hr' }
+      ]
+    },
+    IBS: {
+      name: 'Integrated Business Solutions',
+      hours: '6 hrs/day',
+      tasks: [
+        { text: 'Case study analysis — integrate FR + DT + Audit perspectives', time: '3 hrs' },
+        { text: 'Time-boxed writing: 2 case memos under 20 min each', time: '2 hrs' },
+        { text: 'Review ICAI suggested answers for 2023 IBS paper', time: '1 hr' }
+      ]
+    },
+    Corp: {
+      name: 'Corporate & Other Laws',
+      hours: '3 hrs/day',
+      tasks: [
+        { text: 'Revise SEBI LODR vs Companies Act 2013 — comparison table', time: '1.5 hrs' },
+        { text: 'Practice short questions on Insolvency & Bankruptcy Code', time: '1 hr' },
+        { text: 'Flashcard review — key sections & penalties', time: '0.5 hrs' }
+      ]
+    },
+    SCMPE: {
+      name: 'Strategic Cost Management',
+      hours: '4 hrs/day',
+      tasks: [
+        { text: 'Solve 4 standard costing variance analysis problems', time: '2 hrs' },
+        { text: 'Revise Activity Based Costing with a practice case', time: '1.5 hrs' },
+        { text: 'Mind-map Target Costing vs Kaizen Costing differences', time: '0.5 hrs' }
+      ]
+    }
+  }
+
+  const examLabels = {
+    final: 'CA Final',
+    inter: 'CA Intermediate',
+    foundation: 'CA Foundation'
+  }
+
+  btn.addEventListener('click', () => {
+    const examVal = examSel.value
+    const subjVal = subjSel.value
+    if (!examVal || !subjVal) {
+      examSel.focus()
+      examSel.style.borderColor = '#B45309'
+      subjSel.style.borderColor = '#B45309'
+      setTimeout(() => {
+        examSel.style.borderColor = ''
+        subjSel.style.borderColor = ''
+      }, 1800)
+      return
+    }
+
+    // Show loading
+    placeholder.style.display = 'none'
+    plan.style.display         = 'none'
+    loading.style.display      = 'flex'
+
+    setTimeout(() => {
+      const data = planData[subjVal] || planData.FR
+      const examLabel = examLabels[examVal] || 'CA Final'
+
+      planSubject.textContent = data.name
+      planMeta.textContent    = examLabel + ' · 3-day recovery sprint'
+      planHours.textContent   = data.hours
+
+      planTasks.innerHTML = data.tasks.map((t, i) => `
+        <div class="ob-task">
+          <span class="ob-task-num">${i + 1}</span>
+          <span>${t.text}</span>
+          <span class="ob-task-time">${t.time}</span>
+        </div>
+      `).join('')
+
+      loading.style.display = 'none'
+      plan.style.display    = 'block'
+    }, 1500)
+  })
+})()

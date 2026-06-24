@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Panel — CA Ranker AI</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Sora:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <link rel="stylesheet" href="/css/admin.css"/>
+</head>
+<body class="admin-page">
+
+  <!-- SIDEBAR -->
+  <aside class="admin-sidebar">
+    <div class="admin-sidebar-logo">
+      <span class="logo-sq"></span>
+      <div>
+        <span class="admin-logo-text">CA Ranker <em>AI</em></span>
+        <span class="admin-logo-sub">Admin Panel</span>
+      </div>
+    </div>
+    <nav class="admin-nav">
+      <a href="#" class="admin-nav-item active" data-section="overview">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Overview
+      </a>
+      <a href="#" class="admin-nav-item" data-section="users">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        All Users
+      </a>
+      <a href="#" class="admin-nav-item" data-section="progress">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Progress Data
+      </a>
+      <a href="#" class="admin-nav-item" data-section="mocks">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Mock Results
+      </a>
+    </nav>
+    <button class="admin-logout-btn" id="adminLogout">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+      Logout
+    </button>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="admin-main">
+    <header class="admin-topbar">
+      <h1 class="admin-topbar-title" id="adminTopTitle">Overview</h1>
+      <div class="admin-topbar-right">
+        <span class="admin-badge">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Admin
+        </span>
+      </div>
+    </header>
+
+    <div class="admin-content">
+
+      <!-- ===== OVERVIEW ===== -->
+      <div class="admin-section active" id="admin-overview">
+        <div class="admin-stats-row" id="overviewStats"></div>
+        <div class="admin-grid">
+          <div class="admin-card">
+            <h3 class="admin-card-title">Recent Signups</h3>
+            <div id="recentSignups"></div>
+          </div>
+          <div class="admin-card">
+            <h3 class="admin-card-title">Top Performers (Mock Tests)</h3>
+            <div id="topPerformers"></div>
+          </div>
+        </div>
+        <div class="admin-card" style="margin-top:20px">
+          <h3 class="admin-card-title">Goal Distribution</h3>
+          <div class="goal-dist" id="goalDist"></div>
+        </div>
+      </div>
+
+      <!-- ===== USERS ===== -->
+      <div class="admin-section" id="admin-users">
+        <div class="admin-toolbar">
+          <input type="text" class="admin-search" id="userSearch" placeholder="Search by name or email..."/>
+          <span class="admin-count" id="userCount">0 users</span>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="usersTable">
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Goal</th>
+                <th>Age</th>
+                <th>Joined</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="usersTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ===== PROGRESS ===== -->
+      <div class="admin-section" id="admin-progress">
+        <div class="admin-toolbar">
+          <select class="admin-search" id="progressUserFilter" style="max-width:260px">
+            <option value="">All Users</option>
+          </select>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="progressTable">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Subject</th>
+                <th>Topics Covered</th>
+                <th>Hours Studied</th>
+                <th>Coverage %</th>
+                <th>Last Studied</th>
+              </tr>
+            </thead>
+            <tbody id="progressTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ===== MOCK RESULTS ===== -->
+      <div class="admin-section" id="admin-mocks">
+        <div class="admin-toolbar">
+          <select class="admin-search" id="mockUserFilter" style="max-width:260px">
+            <option value="">All Users</option>
+          </select>
+        </div>
+        <div class="admin-table-wrap">
+          <table class="admin-table" id="mocksTable">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Subject</th>
+                <th>Score</th>
+                <th>Percentage</th>
+                <th>Grade</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody id="mocksTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    // Guard
+    if (!sessionStorage.getItem('caranker_admin')) {
+      window.location.replace('/pages/admin-login.html')
+    }
+
+    const ADMIN_STORAGE_KEY = 'caranker_admin_users'
+
+    // ── LOAD ALL USER DATA ────────────────────────────────────
+    function getAllUsers() {
+      // Collect all users from localStorage keys
+      // Each user stores: caranker_user, caranker_progress, caranker_mockhistory, caranker_studylog, caranker_tasks
+      // Since localStorage is per-browser, we store a registry of all users
+      try {
+        const registry = JSON.parse(localStorage.getItem('caranker_registry') || '[]')
+        return registry
+      } catch { return [] }
+    }
+
+    function getUserData(email) {
+      const prefix = 'caranker_u_' + btoa(email).replace(/=/g,'')
+      return {
+        progress:  JSON.parse(localStorage.getItem(prefix + '_progress')  || '{}'),
+        mockHist:  JSON.parse(localStorage.getItem(prefix + '_mockhistory')|| '[]'),
+        studyLog:  JSON.parse(localStorage.getItem(prefix + '_studylog')   || '{}'),
+        tasks:     JSON.parse(localStorage.getItem(prefix + '_tasks')      || '[]'),
+      }
+    }
+
+    // Fallback: read current user's data for demo
+    function getCurrentUserData() {
+      return {
+        user:      JSON.parse(localStorage.getItem('caranker_user') || 'null'),
+        progress:  JSON.parse(localStorage.getItem('caranker_progress') || '{}'),
+        mockHist:  JSON.parse(localStorage.getItem('caranker_mockhistory') || '[]'),
+        studyLog:  JSON.parse(localStorage.getItem('caranker_studylog') || '{}'),
+        tasks:     JSON.parse(localStorage.getItem('caranker_tasks') || '[]'),
+      }
+    }
+
+    function buildAdminData() {
+      const users = getAllUsers()
+      // Always include current logged-in user if exists
+      const cur = getCurrentUserData()
+      if (cur.user && !users.find(u => u.email === cur.user.email)) {
+        users.push({
+          ...cur.user,
+          _progress: cur.progress,
+          _mockHist: cur.mockHist,
+          _studyLog: cur.studyLog,
+          _tasks: cur.tasks,
+        })
+      }
+      return users
+    }
+
+    const allUsers = buildAdminData()
+
+    // ── NAVIGATION ────────────────────────────────────────────
+    const sections = ['overview', 'users', 'progress', 'mocks']
+    const titles   = { overview: 'Overview', users: 'All Users', progress: 'Progress Data', mocks: 'Mock Results' }
+
+    document.querySelectorAll('.admin-nav-item').forEach(item => {
+      item.addEventListener('click', e => {
+        e.preventDefault()
+        const sec = item.dataset.section
+        document.querySelectorAll('.admin-nav-item').forEach(i => i.classList.remove('active'))
+        document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'))
+        item.classList.add('active')
+        document.getElementById('admin-' + sec).classList.add('active')
+        document.getElementById('adminTopTitle').textContent = titles[sec]
+        if (sec === 'users') renderUsers(allUsers)
+        if (sec === 'progress') renderProgress(allUsers)
+        if (sec === 'mocks') renderMocks(allUsers)
+      })
+    })
+
+    document.getElementById('adminLogout').addEventListener('click', () => {
+      sessionStorage.removeItem('caranker_admin')
+      window.location.href = '/pages/login.html'
+    })
+
+    // ── OVERVIEW ──────────────────────────────────────────────
+    function renderOverview() {
+      const totalUsers = allUsers.length
+      const totalMocks = allUsers.reduce((s, u) => s + (u._mockHist?.length || 0), 0)
+      const totalHours = allUsers.reduce((s, u) => {
+        const prog = u._progress || {}
+        return s + Object.values(prog).reduce((ps, p) => ps + (p.hours || 0), 0)
+      }, 0).toFixed(1)
+      const goals = {}
+      allUsers.forEach(u => { const g = u.goal || 'Other'; goals[g] = (goals[g] || 0) + 1 })
+
+      const statsEl = document.getElementById('overviewStats')
+      statsEl.innerHTML = `
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon">👥</div>
+          <div><div class="admin-stat-val">${totalUsers}</div><div class="admin-stat-lbl">Total Users</div></div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon">📝</div>
+          <div><div class="admin-stat-val">${totalMocks}</div><div class="admin-stat-lbl">Mock Tests Taken</div></div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon">⏱️</div>
+          <div><div class="admin-stat-val">${totalHours}</div><div class="admin-stat-lbl">Total Study Hours</div></div>
+        </div>
+        <div class="admin-stat-card">
+          <div class="admin-stat-icon">🎯</div>
+          <div><div class="admin-stat-val">${Object.keys(goals).length}</div><div class="admin-stat-lbl">Exam Levels</div></div>
+        </div>`
+
+      // Recent signups
+      const recent = [...allUsers].sort((a,b) => new Date(b.joinedAt) - new Date(a.joinedAt)).slice(0,5)
+      document.getElementById('recentSignups').innerHTML = recent.length ? recent.map(u => `
+        <div class="admin-list-row">
+          <div class="admin-list-avatar">${(u.name||'?')[0].toUpperCase()}</div>
+          <div class="admin-list-info"><strong>${u.name}</strong><span>${u.email}</span></div>
+          <div class="admin-list-meta">${u.goal || '—'}<br><small>${u.joinedAt ? new Date(u.joinedAt).toLocaleDateString() : '—'}</small></div>
+        </div>`).join('') : '<p class="admin-empty">No users yet</p>'
+
+      // Top performers
+      const withScores = allUsers.filter(u => u._mockHist?.length).map(u => {
+        const best = u._mockHist.reduce((b, m) => m.percentage > (b?.percentage||0) ? m : b, null)
+        return { ...u, bestPct: best?.percentage || 0, bestScore: best?.score, bestTotal: best?.total }
+      }).sort((a,b) => b.bestPct - a.bestPct).slice(0,5)
+
+      document.getElementById('topPerformers').innerHTML = withScores.length ? withScores.map((u,i) => `
+        <div class="admin-list-row">
+          <div class="admin-rank">#${i+1}</div>
+          <div class="admin-list-info"><strong>${u.name}</strong><span>${u.goal}</span></div>
+          <div class="admin-list-meta"><span class="admin-score-badge">${u.bestScore}/${u.bestTotal} · ${u.bestPct}%</span></div>
+        </div>`).join('') : '<p class="admin-empty">No mock tests taken yet</p>'
+
+      // Goal distribution
+      const colors = { 'CA Final': '#D4AF37', 'CA Inter': '#C89B2C', 'Foundation': '#A0784A', 'Other': '#6B5B4D' }
+      const total = Object.values(goals).reduce((s,v) => s+v, 0)
+      document.getElementById('goalDist').innerHTML = Object.entries(goals).map(([g,c]) => `
+        <div class="goal-dist-row">
+          <span class="goal-dist-name">${g}</span>
+          <div class="goal-dist-bar-wrap">
+            <div class="goal-dist-bar" style="width:${total ? Math.round((c/total)*100) : 0}%;background:${colors[g]||'#888'}"></div>
+          </div>
+          <span class="goal-dist-count">${c} user${c>1?'s':''}</span>
+        </div>`).join('') || '<p class="admin-empty">No data</p>'
+    }
+
+    // ── USERS TABLE ───────────────────────────────────────────
+    function renderUsers(users) {
+      document.getElementById('userCount').textContent = users.length + ' user' + (users.length !== 1 ? 's' : '')
+      const tbody = document.getElementById('usersTableBody')
+      tbody.innerHTML = users.length ? users.map(u => `
+        <tr>
+          <td><div class="td-user"><div class="td-avatar">${(u.name||'?')[0].toUpperCase()}</div>${u.name || '—'}</div></td>
+          <td>${u.email || '—'}</td>
+          <td><span class="td-badge">${u.goal || '—'}</span></td>
+          <td>${u.age || '—'}</td>
+          <td>${u.joinedAt ? new Date(u.joinedAt).toLocaleDateString('en-IN') : '—'}</td>
+          <td><button class="admin-view-btn" onclick="viewUser('${u.email}')">View Details</button></td>
+        </tr>`).join('') : '<tr><td colspan="6" class="admin-empty">No users found</td></tr>'
+    }
+
+    // User search
+    document.getElementById('userSearch').addEventListener('input', e => {
+      const q = e.target.value.toLowerCase()
+      const filtered = allUsers.filter(u => u.name?.toLowerCase().includes(q) || u.email?.toLowerCase().includes(q))
+      renderUsers(filtered)
+    })
+
+    function viewUser(email) {
+      const u = allUsers.find(u => u.email === email)
+      if (!u) return
+      const prog = u._progress || {}
+      const mocks = u._mockHist || []
+      const totalHrs = Object.values(prog).reduce((s,p) => s+(p.hours||0), 0).toFixed(1)
+      const bestMock = mocks.length ? mocks.reduce((b,m) => m.percentage > (b?.percentage||0) ? m : b, null) : null
+      alert(`👤 ${u.name}\n📧 ${u.email}\n🎯 ${u.goal}\n📅 Joined: ${u.joinedAt ? new Date(u.joinedAt).toLocaleDateString() : '—'}\n⏱ Total Study Hours: ${totalHrs}\n📝 Mock Tests: ${mocks.length}\n🏆 Best Score: ${bestMock ? bestMock.score+'/'+bestMock.total+' ('+bestMock.percentage+'%)' : '—'}`)
+    }
+    window.viewUser = viewUser
+
+    // ── PROGRESS TABLE ────────────────────────────────────────
+    function renderProgress(users) {
+      // Populate filter
+      const filter = document.getElementById('progressUserFilter')
+      filter.innerHTML = '<option value="">All Users</option>' + users.map(u => `<option value="${u.email}">${u.name}</option>`).join('')
+
+      function build(filtered) {
+        const tbody = document.getElementById('progressTableBody')
+        const rows = []
+        filtered.forEach(u => {
+          const prog = u._progress || {}
+          Object.entries(prog).forEach(([subj, data]) => {
+            const pct = data.topicsCovered && data.topicsCovered > 0 ? Math.min(100, Math.round((data.topicsCovered / 30) * 100)) : 0
+            rows.push(`<tr>
+              <td>${u.name}</td>
+              <td>${subj}</td>
+              <td>${data.topicsCovered || 0}</td>
+              <td>${data.hours || 0} hrs</td>
+              <td><div class="td-progress"><div class="td-progress-fill" style="width:${pct}%"></div><span>${pct}%</span></div></td>
+              <td>${data.lastStudied ? new Date(data.lastStudied).toLocaleDateString('en-IN') : '—'}</td>
+            </tr>`)
+          })
+        })
+        tbody.innerHTML = rows.length ? rows.join('') : '<tr><td colspan="6" class="admin-empty">No progress data</td></tr>'
+      }
+
+      build(users)
+      filter.addEventListener('change', () => {
+        const val = filter.value
+        build(val ? users.filter(u => u.email === val) : users)
+      })
+    }
+
+    // ── MOCK RESULTS TABLE ────────────────────────────────────
+    function renderMocks(users) {
+      const filter = document.getElementById('mockUserFilter')
+      filter.innerHTML = '<option value="">All Users</option>' + users.map(u => `<option value="${u.email}">${u.name}</option>`).join('')
+
+      function build(filtered) {
+        const tbody = document.getElementById('mocksTableBody')
+        const rows = []
+        filtered.forEach(u => {
+          const mocks = u._mockHist || []
+          mocks.forEach(m => {
+            const grade = m.percentage >= 80 ? 'A' : m.percentage >= 60 ? 'B' : m.percentage >= 40 ? 'C' : 'D'
+            const cls   = m.percentage >= 60 ? 'grade-pass' : 'grade-fail'
+            rows.push(`<tr>
+              <td>${u.name}</td>
+              <td>${m.subject || '—'}</td>
+              <td>${m.score}/${m.total}</td>
+              <td>${m.percentage}%</td>
+              <td><span class="td-grade ${cls}">${grade}</span></td>
+              <td>${m.date ? new Date(m.date).toLocaleDateString('en-IN') : '—'}</td>
+            </tr>`)
+          })
+        })
+        tbody.innerHTML = rows.length ? rows.join('') : '<tr><td colspan="6" class="admin-empty">No mock data</td></tr>'
+      }
+
+      build(users)
+      filter.addEventListener('change', () => {
+        const val = filter.value
+        build(val ? users.filter(u => u.email === val) : users)
+      })
+    }
+
+    // ── INIT ──────────────────────────────────────────────────
+    renderOverview()
+  </script>
+</body>
+</html>

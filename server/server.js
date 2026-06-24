@@ -2,33 +2,47 @@ const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
 const dotenv = require('dotenv');
-const connectDB = require('./config/db');
+const path = require('path');
+
 const authRoutes = require('./routes/authRoutes');
+const taskRoutes = require('./routes/taskRoutes');
+const sessionRoutes = require('./routes/sessionRoutes');
 
 // Load environment variables
 dotenv.config();
 
-// Connect to Database
-connectDB();
-
 const app = express();
+const PORT = process.env.PORT || 3000;
 
-// Security Middlewares
-app.use(helmet());
-app.use(cors({
-  origin: ['http://localhost:5173', 'http://127.0.0.1:5173', 'http://localhost:3000'],
-  credentials: true
-}));
+// Security Middlewares (with custom directives to allow serving React inline styles and fonts)
+app.use(
+  helmet({
+    contentSecurityPolicy: false, // Turn off for local development so React can load fonts and styles seamlessly
+  })
+);
+
+app.use(cors());
 
 // Body parser
 app.use(express.json());
 
-// Mount Routes
+// Mount API Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/tasks', taskRoutes);
+app.use('/api/sessions', sessionRoutes);
 
 // Simple health check route
-app.get('/health', (req, res) => {
-  res.json({ status: 'healthy', timestamp: new Date() });
+app.get('/api/health', (req, res) => {
+  res.json({ status: 'healthy', database: 'local_json_files', timestamp: new Date() });
+});
+
+// Serve compiled static React build files
+const clientBuildPath = path.join(__dirname, '..', 'client', 'dist');
+app.use(express.static(clientBuildPath));
+
+// Catch-all route to serve React's index.html (supports React Router refreshes!)
+app.get('/(.*)', (req, res) => {
+  res.sendFile(path.join(clientBuildPath, 'index.html'));
 });
 
 // Error handling middleware
@@ -37,11 +51,10 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, message: 'Internal Server Error' });
 });
 
-const PORT = process.env.PORT || 5000;
-
 app.listen(PORT, () => {
   console.log(`\n  =========================================`);
-  console.log(`  CA Ranker AI Backend running on port ${PORT}`);
-  console.log(`  Health Check: http://localhost:${PORT}/health`);
+  console.log(`  🟢 CA RANKER AI PLATFORM (UNIFIED SINGLE PORT)`);
+  console.log(`  📁 Mode: 100% Local JSON Storage`);
+  console.log(`  🌎 Unified Portal: http://localhost:${PORT}`);
   console.log(`  =========================================\n`);
 });
