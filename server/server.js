@@ -41,7 +41,7 @@ const clientBuildPath = path.join(__dirname, '..', 'client', 'dist');
 app.use(express.static(clientBuildPath));
 
 // Catch-all route to serve React's index.html (supports React Router refreshes!)
-app.get('/(.*)', (req, res) => {
+app.get('/*splat', (req, res) => {
   res.sendFile(path.join(clientBuildPath, 'index.html'));
 });
 

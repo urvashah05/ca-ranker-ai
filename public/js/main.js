@@ -428,3 +428,42 @@ document.querySelectorAll('.up:not(.hero-inner .up)').forEach(el => io.observe(e
     }, 1500)
   })
 })()
+
+/* ── GITHUB HEATMAP ── */
+;(function(){
+  const grid = document.getElementById('heatmapGrid')
+  if (!grid) return
+  const cells = 53 * 7
+  const today = new Date().getDay()
+  const html = []
+  for (let i = 0; i < cells; i++) {
+    const daysAgo = cells - i
+    const isPast = daysAgo > 0
+    const rand = Math.random()
+    let cls = 'hm-c0'
+    if (isPast && daysAgo < 50)      cls = rand > .6 ? 'hm-c4' : rand > .4 ? 'hm-c3' : rand > .25 ? 'hm-c2' : rand > .1 ? 'hm-c1' : 'hm-c0'
+    else if (isPast && daysAgo < 150) cls = rand > .7 ? 'hm-c3' : rand > .5 ? 'hm-c2' : rand > .3 ? 'hm-c1' : 'hm-c0'
+    else if (isPast)                  cls = rand > .8 ? 'hm-c2' : rand > .6 ? 'hm-c1' : 'hm-c0'
+    html.push('<div class="hm-cell ' + cls + '"></div>')
+  }
+  grid.innerHTML = html.join('')
+
+  // Animate streak counter
+  const streakEl = document.querySelector('.heatmap-streak-big')
+  if (streakEl) {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return
+        const target = parseInt(streakEl.dataset.count)
+        let cur = 0
+        const t = setInterval(() => {
+          cur = Math.min(cur + 1, target)
+          streakEl.textContent = cur
+          if (cur >= target) clearInterval(t)
+        }, 40)
+        obs.unobserve(e.target)
+      })
+    }, { threshold: 0.5 })
+    obs.observe(streakEl)
+  }
+})()
